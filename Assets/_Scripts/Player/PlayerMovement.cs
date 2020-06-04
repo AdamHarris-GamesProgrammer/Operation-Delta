@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         float finalSpeed = speed * speedFactor;
-        Debug.Log("Calculated Speed: " + finalSpeed);
+        //Debug.Log("Calculated Speed: " + finalSpeed);
 
         characterController.Move(move * finalSpeed * Time.deltaTime);
 
