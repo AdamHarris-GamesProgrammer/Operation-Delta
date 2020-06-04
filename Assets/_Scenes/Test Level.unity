@@ -2728,7 +2728,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh13916
+  m_Name: pb_Mesh14184
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13962,7 +13962,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958568514}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 19.328331, y: 1.999, z: 40.64}
+  m_LocalPosition: {x: 19.328331, y: 0.802, z: 32.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1004322505}
@@ -13986,6 +13986,8 @@ MonoBehaviour:
   speed: 12
   jumpHeight: 3
   gravityFactor: 2
+  sprintSpeedFactor: 1.5
+  crouchSpeedFactor: 0.5
   groundCheck: {fileID: 1297405744}
   groundDistance: 0.4
   groundMask:
@@ -24976,7 +24978,7 @@ GameObject:
   - component: {fileID: 1984459184}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
