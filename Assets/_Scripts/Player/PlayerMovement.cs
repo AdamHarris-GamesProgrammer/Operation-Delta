@@ -22,6 +22,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float yOffsetOnCrouch = -1.25f;
     private Transform cameraTransform;
 
+    [Header("Controller Settings")]
+    [SerializeField] private float controllerYOffsetOnCrouch = -0.75f;
+    [SerializeField] private float controllerHeightOffsetOnCrouch = -1.45f;
+
+    //Controller crouch changed y offset = -0.75 (diff -0.75f)
+    //Controller crouch changed height = 1.65 (diff -1.45f)
 
     private float speedFactor = 1.0f;
 
@@ -99,11 +105,15 @@ public class PlayerMovement : MonoBehaviour
         if (isCrouched)
         {
             cameraTransform.position = new Vector3(cameraTransform.position.x, (cameraTransform.position.y + yOffsetOnCrouch), cameraTransform.position.z);
+            characterController.height -= controllerHeightOffsetOnCrouch;
+            characterController.center = new Vector3(characterController.center.x, (characterController.center.y + controllerYOffsetOnCrouch), characterController.center.z);
             speedFactor = crouchSpeedFactor;
         }
         else
         {
             cameraTransform.position = new Vector3(cameraTransform.position.x, (cameraTransform.position.y - yOffsetOnCrouch), cameraTransform.position.z);
+            characterController.height += controllerHeightOffsetOnCrouch;
+            characterController.center = new Vector3(characterController.center.x, (characterController.center.y - controllerYOffsetOnCrouch), characterController.center.z);
         }
     }
 
