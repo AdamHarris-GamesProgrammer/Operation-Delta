@@ -10,11 +10,23 @@ public class PlayerShoot : MonoBehaviour
 
     [Header("Gun Settings")]
     [SerializeField] private float range = 100.0f;
+
     [Tooltip("Amount of bullets fired per second")]
     [SerializeField] private float fireRate = 5.0f;
     [SerializeField] private int magazineSize = 24;
+    [SerializeField] private float bulletDamage = 15.0f;
+
     [Header("Reload Settings")]
     private float reloadDuration = 2.5f;
+
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip dryShotSound;
+    private AudioSource audioSource;
+
+    [Header("Particle Systems")]
+    [SerializeField] private ParticleSystem barrelSmokeParticles;
+    [SerializeField] private ParticleSystem traceParticles;
 
     float reloadTimer;
 
@@ -25,7 +37,9 @@ public class PlayerShoot : MonoBehaviour
     bool reloading;
 
     //Recoil
-    //Damage
+    //auto reload when bullets are out
+    //optional reload by pressing r
+    //fire effects from gun
     //Crosshair gets bigger and smaller depending on if you are zoomed in?
 
     private Camera camera;
@@ -33,6 +47,7 @@ public class PlayerShoot : MonoBehaviour
     private void Awake()
     {
         camera = transform.parent.GetComponent<Camera>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -68,12 +83,23 @@ public class PlayerShoot : MonoBehaviour
 
     void Shoot()
     {
+        audioSource.clip = shootSound;
+        audioSource.Play();
+
+        barrelSmokeParticles.Play();
+        traceParticles.Play();
+
         timeSinceLastShot = 0.0f;
         currentClip--;
+
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layer))
         {
             Debug.Log(hit.transform.name);
+            if (hit.transform.gameObject.GetComponent<Destructable>())
+            {
+                hit.transform.gameObject.GetComponent<Destructable>().TakeDamage(bulletDamage);
+            }
         }
 
         if(currentClip == 0)
