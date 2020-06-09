@@ -13,7 +13,6 @@ public class StateController : MonoBehaviour
 
     //TODO: Incorporate game manager and enemy manager classes
     [HideInInspector] public NavMeshAgent agent;
-    private GameObject wayPointGroup;
     public List<Transform> waypoints;
     public int nextWaypoint;
     public Transform target;
@@ -24,17 +23,6 @@ public class StateController : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        wayPointGroup = GameObject.FindGameObjectWithTag("Waypoint");
-
-        foreach(Transform transform in wayPointGroup.transform)
-        {
-            waypoints.Add(transform);
-        }
-    }
-
-    private void Update()
-    {
-        currentState.UpdateState(this);
     }
 
     private void OnDrawGizmos()
