@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Actions/Moving Patrol")]
-public class MovingPatrolAction : Action
+[CreateAssetMenu(menuName = "AI/Actions/Patrol")]
+public class PatrolAction : Action
 {
     public override void Act(StateController controller)
     {
