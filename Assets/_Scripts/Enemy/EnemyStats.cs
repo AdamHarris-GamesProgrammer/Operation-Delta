@@ -22,4 +22,7 @@ public class EnemyStats : ScriptableObject
     [Header("Search Settings")]
     public float searchDuration = 4.0f;
     public float searchingTurnSpeed = 120.0f;
+
+    [Header("Patrol Settings")]
+    public float waitAtWaypointTimer = 2.0f;
 }
