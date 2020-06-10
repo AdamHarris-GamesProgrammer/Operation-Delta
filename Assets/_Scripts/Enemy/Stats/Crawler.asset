@@ -19,7 +19,7 @@ MonoBehaviour:
   damage: 12
   damageMultiplier: 1
   attackRate: 1
-  attackRange: 1.5
+  attackRange: 2.5
   movementSpeed: 4
   sprintingSpeedFactor: 1.5
   crawlingSpeedFactor: 0.5

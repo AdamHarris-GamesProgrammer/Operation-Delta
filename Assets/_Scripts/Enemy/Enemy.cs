@@ -16,14 +16,15 @@ public class Enemy : MonoBehaviour
 
     NavMeshAgent agent;
 
-    [SerializeField] private Animation anim;
+
+    private Animator animator;
 
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Start is called before the first frame update
@@ -31,7 +32,6 @@ public class Enemy : MonoBehaviour
     {
         agent.speed = stats.movementSpeed;
         health = stats.health;
-        
     }
 
     // Update is called once per frame
@@ -56,14 +56,11 @@ public class Enemy : MonoBehaviour
 
                 if(agent.remainingDistance <= stats.attackRange)
                 {
-                    if(anim != null)
-                    {
-                        if (!anim.isPlaying)
-                        {
-                            anim.Play();
-                        }
-                    }
+                    animator.SetTrigger("attack");
                 }
+ 
+
+                //Debug.Log("Anim Playing: " + anim.isPlaying);
 
 
                 agent.destination = goal.position;
@@ -73,8 +70,6 @@ public class Enemy : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-
     }
 
     public void TakeDamage(float damageIn)
