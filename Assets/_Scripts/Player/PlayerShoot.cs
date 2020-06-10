@@ -46,7 +46,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
-        camera = transform.parent.GetComponent<Camera>();
+        camera = transform.GetComponentInParent<Camera>();
         audioSource = GetComponent<AudioSource>();
     }
 
