@@ -184,11 +184,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1605056981382851372, guid: 55e23f49357731644a57d1f1185f82ae,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1438662401}
     - target: {fileID: 1605056981382851373, guid: 55e23f49357731644a57d1f1185f82ae,
         type: 3}
       propertyPath: m_Name
       value: Crawler
       objectReference: {fileID: 0}
+    - target: {fileID: 1605056981502322732, guid: 55e23f49357731644a57d1f1185f82ae,
+        type: 3}
+      propertyPath: m_Name
+      value: Eyes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605056981502322732, guid: 55e23f49357731644a57d1f1185f82ae,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817486724251627976, guid: 55e23f49357731644a57d1f1185f82ae,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817486724251627976, guid: 55e23f49357731644a57d1f1185f82ae,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817486724251627976, guid: 55e23f49357731644a57d1f1185f82ae,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817486724251627976, guid: 55e23f49357731644a57d1f1185f82ae,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817486724251627976, guid: 55e23f49357731644a57d1f1185f82ae,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197143538513465532, guid: 55e23f49357731644a57d1f1185f82ae,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2800dfb5f20991d4cb71639fd82ae769, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55e23f49357731644a57d1f1185f82ae, type: 3}
 --- !u!1 &36705931
@@ -33906,6 +33951,28 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1438662400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 518770877612896950, guid: 55e23f49357731644a57d1f1185f82ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 19691371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &1438662401
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438662400}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 25bc1d11bf3948349a359f6af5c247a8, type: 2}
+  m_Animations:
+  - {fileID: 0}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1678564455
 GameObject:
   m_ObjectHideFlags: 0
@@ -36078,7 +36145,6 @@ MonoBehaviour:
   dryShotSound: {fileID: 8300000, guid: f07cf55cbb8b19b4c888994e06bb0ccf, type: 3}
   barrelSmokeParticles: {fileID: 902179974}
   traceParticles: {fileID: 784731033}
-  anim: {fileID: 1968156902}
 --- !u!82 &1968156901
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36582,7 +36648,6 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 1024
-  sword: {fileID: 2135744097}
   meleeCooldown: 2
 --- !u!23 &2135744095
 MeshRenderer:

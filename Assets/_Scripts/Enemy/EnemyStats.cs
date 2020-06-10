@@ -16,6 +16,7 @@ public class EnemyStats : ScriptableObject
     public float damage = 12.0f;
     public float damageMultiplier = 1.0f;
     public float attackRate = 1.0f;
+    public float attackRange = 1.5f;
 
     [Header("Movement Speed")]
     public float movementSpeed = 2.0f;

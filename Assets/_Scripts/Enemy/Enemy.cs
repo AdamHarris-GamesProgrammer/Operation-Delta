@@ -16,10 +16,14 @@ public class Enemy : MonoBehaviour
 
     NavMeshAgent agent;
 
+    [SerializeField] private Animation anim;
+
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        
     }
 
     // Start is called before the first frame update
@@ -48,6 +52,17 @@ public class Enemy : MonoBehaviour
                 {
                     //Debug.Log("Sprinting");
                     agent.speed = stats.movementSpeed * stats.sprintingSpeedFactor;
+                }
+
+                if(agent.remainingDistance <= stats.attackRange)
+                {
+                    if(anim != null)
+                    {
+                        if (!anim.isPlaying)
+                        {
+                            anim.Play();
+                        }
+                    }
                 }
 
 
