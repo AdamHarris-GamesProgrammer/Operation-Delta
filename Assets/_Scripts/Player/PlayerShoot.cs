@@ -28,6 +28,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private ParticleSystem barrelSmokeParticles;
     [SerializeField] private ParticleSystem traceParticles;
 
+
     float reloadTimer;
 
     float timeSinceLastShot;
