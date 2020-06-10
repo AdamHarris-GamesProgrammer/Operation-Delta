@@ -36078,6 +36078,7 @@ MonoBehaviour:
   dryShotSound: {fileID: 8300000, guid: f07cf55cbb8b19b4c888994e06bb0ccf, type: 3}
   barrelSmokeParticles: {fileID: 902179974}
   traceParticles: {fileID: 784731033}
+  anim: {fileID: 1968156902}
 --- !u!82 &1968156901
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36183,9 +36184,9 @@ Animation:
   m_GameObject: {fileID: 1968156895}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: bdb394fd75a8abc4d9017e3886319204, type: 2}
+  m_Animation: {fileID: 7400000, guid: 1be8738ba85773140b449fab170d52b7, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 10f8c287759336c4eb66bc3a1fc3dee0, type: 2}
+  - {fileID: 7400000, guid: 1be8738ba85773140b449fab170d52b7, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -36639,7 +36640,7 @@ Animation:
   m_GameObject: {fileID: 2135744092}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: bdb394fd75a8abc4d9017e3886319204, type: 2}
+  m_Animation: {fileID: 7400000, guid: e56ed3824967d9d43bfe1f687b3e0d57, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: e56ed3824967d9d43bfe1f687b3e0d57, type: 2}
   m_WrapMode: 0

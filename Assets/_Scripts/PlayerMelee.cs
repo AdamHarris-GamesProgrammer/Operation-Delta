@@ -8,7 +8,7 @@ public class PlayerMelee : MonoBehaviour
     [Header("Layer Settings")]
     [SerializeField] private LayerMask layer;
 
-    public Animation sword;
+    private Animation anim;
 
 
     [SerializeField] private float meleeCooldown = 0.2f;
@@ -24,6 +24,7 @@ public class PlayerMelee : MonoBehaviour
     {
         camera = gameObject.GetComponentInParent<Camera>();
         meshRenderer = GetComponent<MeshRenderer>();
+        anim = GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -38,7 +39,7 @@ public class PlayerMelee : MonoBehaviour
             }
         }
 
-        if (sword.isPlaying)
+        if (anim.isPlaying)
         {
             meshRenderer.enabled = true;
         }
@@ -54,7 +55,7 @@ public class PlayerMelee : MonoBehaviour
             if (canAttack)
             {
                 //meshRenderer.enabled = true;
-                sword.Play("Sword");
+                anim.Play("Sword");
                 Attack();
                 canAttack = false;
             }

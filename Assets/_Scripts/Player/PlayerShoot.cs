@@ -29,6 +29,8 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private ParticleSystem traceParticles;
 
 
+    private Animation anim;
+
     float reloadTimer;
 
     float timeSinceLastShot;
@@ -49,6 +51,7 @@ public class PlayerShoot : MonoBehaviour
     {
         camera = transform.GetComponentInParent<Camera>();
         audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animation>();
     }
 
     private void Start()
@@ -84,6 +87,8 @@ public class PlayerShoot : MonoBehaviour
 
     void Shoot()
     {
+        anim.Play("Recoil");
+
         audioSource.clip = shootSound;
         audioSource.Play();
 
@@ -97,9 +102,9 @@ public class PlayerShoot : MonoBehaviour
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layer))
         {
             Debug.Log(hit.transform.name);
-            if (hit.transform.gameObject.GetComponent<Destructable>())
+            if (hit.transform.gameObject.CompareTag("Enemy"))
             {
-                hit.transform.gameObject.GetComponent<Destructable>().TakeDamage(bulletDamage);
+                hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(bulletDamage);
             }
         }
 
