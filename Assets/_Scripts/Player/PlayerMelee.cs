@@ -15,6 +15,8 @@ public class PlayerMelee : MonoBehaviour
     [SerializeField] private float swordDamage = 12.0f;
     [SerializeField] private float attackRange = 3.5f;
 
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip swordImpactSound;
 
     private float cooldownTimer = 0.0f;
 
@@ -93,7 +95,7 @@ public class PlayerMelee : MonoBehaviour
             hitColliders[i].gameObject.TryGetComponent<Enemy>(out enemyComponent);
             if (enemyComponent != null)
             {
-                enemyComponent.TakeDamage(swordDamage);
+                enemyComponent.TakeDamage(swordDamage, swordImpactSound);
             }
         }
     }

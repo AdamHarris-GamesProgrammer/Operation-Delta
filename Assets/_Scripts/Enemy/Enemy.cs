@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform eyes;
     [SerializeField] private LayerMask layer;
 
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip deathSound;
+
     private float health;
 
     private float attackTimer = 0.0f;
@@ -20,6 +23,7 @@ public class Enemy : MonoBehaviour
 
     NavMeshAgent agent;
 
+    private AudioSource audioSource;
 
     private Animator animator;
 
@@ -29,7 +33,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         animator = GetComponentInChildren<Animator>();
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -60,14 +64,14 @@ public class Enemy : MonoBehaviour
                     agent.speed = stats.movementSpeed * stats.sprintingSpeedFactor;
                 }
 
-                if (agent.remainingDistance <= stats.attackRange && attackTimer >= stats.attackRate) 
+                if (agent.remainingDistance <= stats.attackRange && attackTimer >= stats.attackRate)
                 {
                     attackTimer = 0.0f;
 
                     animator.SetTrigger("attack");
                     RaycastHit hit;
 
-                    if(Physics.Raycast(eyes.transform.position, eyes.transform.forward, out hit, stats.attackRange, layer))
+                    if (Physics.Raycast(eyes.transform.position, eyes.transform.forward, out hit, stats.attackRange, layer))
                     {
                         if (hit.transform.gameObject.CompareTag("Player"))
                         {
@@ -79,7 +83,7 @@ public class Enemy : MonoBehaviour
                         }
                     }
                 }
- 
+
 
                 //Debug.Log("Anim Playing: " + anim.isPlaying);
 
@@ -89,13 +93,31 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            StartCoroutine("OnDeath");
         }
     }
 
-    public void TakeDamage(float damageIn)
+    IEnumerator OnDeath()
     {
+        audioSource.clip = deathSound;
+        audioSource.Play();
+        yield return new WaitForSeconds(deathSound.length);
+        Destroy(this.gameObject);
+    }
+
+    public void TakeDamage(float damageIn, AudioClip desiredSound)
+    {
+        if (!audioSource.isPlaying)
+        {
+            if(desiredSound != null)
+            {
+                audioSource.clip = desiredSound;
+            }
+            audioSource.Play();
+            Debug.Log("Played");
+        }
+
         health -= damageIn;
-        //TODO: Play damage sound
+
     }
 }

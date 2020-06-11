@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour
     [Header("Game UI")]
     [SerializeField] private Image hitEffect;
 
+
+    [Header("Sounds")]
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip damagedSound;
+    [SerializeField] private AudioClip deathSound;
+
     public float health = 100.0f;
 
     public bool canBeDamaged = false;
@@ -29,6 +35,8 @@ public class PlayerController : MonoBehaviour
         }
 
         DontDestroyOnLoad(this);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -49,6 +57,9 @@ public class PlayerController : MonoBehaviour
         isAlive = false;
         Debug.Log("Dead");
         GameManager.instance.isGameOver = true;
+
+        audioSource.clip = deathSound;
+        audioSource.Play();
     }
 
     public void TakeDamage(float damageIn)
@@ -62,11 +73,10 @@ public class PlayerController : MonoBehaviour
                 OnDeath();
             }
         }
-
-        
-        
         StartCoroutine("HitEffect");
-        //TODO: Hit effect, take damage, hit sound
+
+        audioSource.clip = damagedSound;
+        audioSource.Play();
     }
 
     IEnumerator HitEffect()

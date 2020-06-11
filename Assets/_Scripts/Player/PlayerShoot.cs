@@ -22,6 +22,7 @@ public class PlayerShoot : MonoBehaviour
     [Header("Sound Settings")]
     [SerializeField] private AudioClip shootSound;
     [SerializeField] private AudioClip dryShotSound;
+    [SerializeField] private AudioClip impactSound;
     private AudioSource audioSource;
 
     [Header("Particle Systems")]
@@ -107,7 +108,7 @@ public class PlayerShoot : MonoBehaviour
             Debug.Log(hit.transform.name);
             if (hit.transform.gameObject.CompareTag("Enemy"))
             {
-                hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(bulletDamage);
+                hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(bulletDamage, impactSound);
             }
         }
 

@@ -1799,14 +1799,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.12259703, b: 0.12259703, a: 0.39607844}
+  m_Color: {r: 0.8962264, g: 0.12259703, b: 0.12259703, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -24382,6 +24382,7 @@ GameObject:
   - component: {fileID: 958568517}
   - component: {fileID: 958568518}
   - component: {fileID: 958568519}
+  - component: {fileID: 958568520}
   m_Layer: 10
   m_Name: FPSPlayer
   m_TagString: Player
@@ -24461,6 +24462,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc619930dffd11429d107868e0702fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffect: {fileID: 84114653}
+  damagedSound: {fileID: 8300000, guid: 1bef2be927497bc4e8b37d96af4f885f, type: 3}
+  deathSound: {fileID: 8300000, guid: 16b5bd48d3eee7f40a2bd034b054b0b6, type: 3}
   health: 100
   canBeDamaged: 0
 --- !u!135 &958568519
@@ -24476,6 +24480,102 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &958568520
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958568514}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &994489085
 GameObject:
   m_ObjectHideFlags: 0
@@ -36447,6 +36547,7 @@ MonoBehaviour:
   bulletDamage: 15
   shootSound: {fileID: 8300000, guid: 5abfa87b8626f3c48b2c69327507a045, type: 3}
   dryShotSound: {fileID: 8300000, guid: f07cf55cbb8b19b4c888994e06bb0ccf, type: 3}
+  impactSound: {fileID: 0}
   barrelSmokeParticles: {fileID: 902179974}
   traceParticles: {fileID: 784731033}
 --- !u!82 &1968156901
@@ -36956,6 +37057,7 @@ MonoBehaviour:
   meleeCooldown: 1
   swordDamage: 12
   attackRange: 3.5
+  swordImpactSound: {fileID: 8300000, guid: 25ded33e39cfabc40ad7c1593482e5d4, type: 3}
 --- !u!23 &2135744095
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37031,7 +37133,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 59e981902ab9c1c4a83ecc58aadc453b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.332
+  m_Volume: 0
   m_Pitch: 1.32
   Loop: 0
   Mute: 0
