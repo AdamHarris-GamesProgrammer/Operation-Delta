@@ -48,56 +48,61 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float yGravity = CalculateYVelocity();
-
-        //Crouch
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (PlayerController.instance.isAlive)
         {
-            isCrouched = !isCrouched;
+            float yGravity = CalculateYVelocity();
 
-            CrouchHeight();
-        }
-
-        //Sprinting
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            isSprinting = true;
-            speedFactor = sprintSpeedFactor;
-            if (isCrouched)
+            //Crouch
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                isCrouched = false;
+                isCrouched = !isCrouched;
+
                 CrouchHeight();
             }
+
+            //Sprinting
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                isSprinting = true;
+                speedFactor = sprintSpeedFactor;
+                if (isCrouched)
+                {
+                    isCrouched = false;
+                    CrouchHeight();
+                }
+            }
+            else
+            {
+                isSprinting = false;
+            }
+
+            //Movement
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            Vector3 move = transform.right * x + transform.forward * z;
+
+            if (!isCrouched && !isSprinting)
+            {
+                speedFactor = 1.0f;
+            }
+
+            float finalSpeed = speed * speedFactor;
+            //Debug.Log("Calculated Speed: " + finalSpeed);
+
+            characterController.Move(move * finalSpeed * Time.deltaTime);
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * yGravity);
+            }
+
+            velocity.y += yGravity * Time.deltaTime;
+
+            characterController.Move(velocity * Time.deltaTime);
         }
-        else
-        {
-            isSprinting = false;
-        }
 
-        //Movement
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
-
-        if(!isCrouched && !isSprinting)
-        {
-            speedFactor = 1.0f;
-        }
-
-        float finalSpeed = speed * speedFactor;
-        //Debug.Log("Calculated Speed: " + finalSpeed);
-
-        characterController.Move(move * finalSpeed * Time.deltaTime);
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * yGravity);
-        }
-
-        velocity.y += yGravity * Time.deltaTime;
-
-        characterController.Move(velocity * Time.deltaTime);
+        
     }
 
     void CrouchHeight()

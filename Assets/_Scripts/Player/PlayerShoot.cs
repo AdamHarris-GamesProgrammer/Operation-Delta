@@ -63,24 +63,27 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (reloading)
+        if (PlayerController.instance.isAlive)
         {
-            reloadTimer -= Time.deltaTime;
-            Debug.Log("Time until reload: " + reloadTimer);
-            if (reloadTimer <= 0.0f)
+            if (reloading)
             {
-                reloading = false;
-                currentClip = magazineSize;
-                Debug.Log("Reload Complete");
+                reloadTimer -= Time.deltaTime;
+                Debug.Log("Time until reload: " + reloadTimer);
+                if (reloadTimer <= 0.0f)
+                {
+                    reloading = false;
+                    currentClip = magazineSize;
+                    Debug.Log("Reload Complete");
+                }
             }
-        }
 
-        timeSinceLastShot += Time.deltaTime;
-        if (Input.GetMouseButton(0))
-        {
-            if(timeSinceLastShot >= timeNeededBetweenShots && !reloading)
+            timeSinceLastShot += Time.deltaTime;
+            if (Input.GetMouseButton(0))
             {
-                Shoot();
+                if (timeSinceLastShot >= timeNeededBetweenShots && !reloading)
+                {
+                    Shoot();
+                }
             }
         }
     }

@@ -9,8 +9,12 @@ public class Enemy : MonoBehaviour
     private Transform goal;
 
     [SerializeField] private EnemyStats stats;
+    [SerializeField] private Transform eyes;
+    [SerializeField] private LayerMask layer;
 
     private float health;
+
+    private float attackTimer = 0.0f;
 
     bool isDead = false;
 
@@ -25,6 +29,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         animator = GetComponentInChildren<Animator>();
+        
     }
 
     // Start is called before the first frame update
@@ -37,6 +42,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        attackTimer += Time.deltaTime;
         if (!isDead)
         {
             if (health <= 0.0f)
@@ -54,9 +60,24 @@ public class Enemy : MonoBehaviour
                     agent.speed = stats.movementSpeed * stats.sprintingSpeedFactor;
                 }
 
-                if(agent.remainingDistance <= stats.attackRange)
+                if (agent.remainingDistance <= stats.attackRange && attackTimer >= stats.attackRate) 
                 {
+                    attackTimer = 0.0f;
+
                     animator.SetTrigger("attack");
+                    RaycastHit hit;
+
+                    if(Physics.Raycast(eyes.transform.position, eyes.transform.forward, out hit, stats.attackRange, layer))
+                    {
+                        if (hit.transform.gameObject.CompareTag("Player"))
+                        {
+
+                            PlayerController.instance.TakeDamage(stats.damage * stats.damageMultiplier);
+
+
+                            Debug.Log("Player Hit");
+                        }
+                    }
                 }
  
 

@@ -7,7 +7,10 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     [HideInInspector] public bool isAlive { get; set; }
-   
+
+    public float health = 100.0f;
+
+    public bool canBeDamaged = false;
 
 
     private void Awake()
@@ -41,5 +44,22 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Dead");
         GameManager.instance.isGameOver = true;
+    }
+
+    public void TakeDamage(float damageIn)
+    {
+        if (canBeDamaged)
+        {
+            health -= damageIn;
+
+            if (health <= 0.0f)
+            {
+                isAlive = false;
+                OnDeath();
+            }
+        }
+
+
+        //TODO: Hit effect, take damage, hit sound
     }
 }
