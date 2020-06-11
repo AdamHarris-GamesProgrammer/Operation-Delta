@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> enemyPrefabs;
 
+    //TODO: Detect spawn points on Start function
     public List<Transform> spawnPoints;
 
     void Awake()

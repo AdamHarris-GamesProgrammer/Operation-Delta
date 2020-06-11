@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
                             PlayerController.instance.TakeDamage(stats.damage * stats.damageMultiplier);
 
 
-                            Debug.Log("Player Hit");
+                            //Debug.Log("Player Hit");
                         }
                     }
                 }

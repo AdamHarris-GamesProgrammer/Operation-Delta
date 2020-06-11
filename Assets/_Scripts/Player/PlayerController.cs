@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
     [HideInInspector] public bool isAlive { get; set; }
+
+    [Header("Game UI")]
+    [SerializeField] private Image hitEffect;
 
     public float health = 100.0f;
 
@@ -42,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
     void OnDeath()
     {
+        isAlive = false;
         Debug.Log("Dead");
         GameManager.instance.isGameOver = true;
     }
@@ -54,12 +59,30 @@ public class PlayerController : MonoBehaviour
 
             if (health <= 0.0f)
             {
-                isAlive = false;
                 OnDeath();
             }
         }
 
-
+        
+        
+        StartCoroutine("HitEffect");
         //TODO: Hit effect, take damage, hit sound
+    }
+
+    IEnumerator HitEffect()
+    {
+        //Debug.Log("Hit Effect On");
+        hitEffect.gameObject.SetActive(true);
+
+        for (float ft = 1f; ft >= 0; ft -= 0.3f)
+        {
+            Color c = hitEffect.color;
+            c.a = ft;
+            hitEffect.color = c;
+            yield return new WaitForSeconds(.1f);
+        }
+
+        //Debug.Log("Hit Effect Off");
+        hitEffect.gameObject.SetActive(false);
     }
 }
