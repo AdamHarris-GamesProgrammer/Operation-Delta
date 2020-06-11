@@ -93,17 +93,11 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            StartCoroutine("OnDeath");
+            //TODO: Enemy Death sounds
+            Destroy(this.gameObject);
         }
     }
 
-    IEnumerator OnDeath()
-    {
-        audioSource.clip = deathSound;
-        audioSource.Play();
-        yield return new WaitForSeconds(deathSound.length);
-        Destroy(this.gameObject);
-    }
 
     public void TakeDamage(float damageIn, AudioClip desiredSound)
     {

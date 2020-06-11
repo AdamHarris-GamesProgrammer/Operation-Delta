@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemyPrefabs;
 
     //TODO: Detect spawn points on Start function
-    public List<Transform> spawnPoints;
+    public GameObject spawnpointsParent;
+    [HideInInspector] public List<Transform> spawnPoints;
 
     void Awake()
     {
@@ -34,7 +35,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        foreach(Transform go in spawnpointsParent.transform)
+        {
+            spawnPoints.Add(go);
+        }
+
+        //spawnpointsParent.GetComponentsInChildren<Transform>()
     }
 
     // Update is called once per frame
