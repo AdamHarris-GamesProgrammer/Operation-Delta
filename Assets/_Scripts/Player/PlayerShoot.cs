@@ -40,7 +40,6 @@ public class PlayerShoot : MonoBehaviour
 
     bool reloading;
 
-    //Recoil
     //auto reload when bullets are out
     //optional reload by pressing r
     //fire effects from gun

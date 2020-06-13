@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Game UI")]
     [SerializeField] private Image hitEffect;
+    [SerializeField] private Image healthBar;
 
 
     [Header("Sounds")]
@@ -18,7 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip damagedSound;
     [SerializeField] private AudioClip deathSound;
 
-    public float health = 100.0f;
+    public float healthAmount = 100.0f;
+    private float health;
 
     public bool canBeDamaged = false;
 
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         isAlive = true;
+
+        health = healthAmount;
     }
 
     private void Update()
@@ -77,6 +81,12 @@ public class PlayerController : MonoBehaviour
 
         audioSource.clip = damagedSound;
         audioSource.Play();
+
+        //Calculate the percentage of health left;
+
+        float fillAmount = health / healthAmount;
+
+        healthBar.fillAmount = fillAmount;
     }
 
     IEnumerator HitEffect()

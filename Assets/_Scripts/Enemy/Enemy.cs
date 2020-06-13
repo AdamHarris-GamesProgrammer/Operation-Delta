@@ -94,6 +94,9 @@ public class Enemy : MonoBehaviour
         else
         {
             //TODO: Enemy Death sounds
+
+            ScoreTextController.instance.ScoreUp(stats.scoreValue);
+
             Destroy(this.gameObject);
         }
     }

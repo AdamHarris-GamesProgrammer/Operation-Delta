@@ -14,7 +14,10 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> enemyPrefabs;
 
-    //TODO: Detect spawn points on Start function
+    enum GameMode { Surivial, RoomClear };
+    [SerializeField] private GameMode gameMode;
+
+
     public GameObject spawnpointsParent;
     [HideInInspector] public List<Transform> spawnPoints;
 
@@ -28,8 +31,6 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-
-        DontDestroyOnLoad(this);
     }
 
     // Start is called before the first frame update
@@ -39,16 +40,29 @@ public class GameManager : MonoBehaviour
         {
             spawnPoints.Add(go);
         }
-
-        //spawnpointsParent.GetComponentsInChildren<Transform>()
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isGameOver)
+        {
+            if (gameMode == GameMode.Surivial)
+            {
+                SurvivalUpdate();
+            }
+            else if (gameMode == GameMode.RoomClear)
+            {
+                RoomClearUpdate();
+            }
+        }
+    }
+
+    void SurvivalUpdate()
+    {
         spawnTimer += Time.deltaTime;
 
-        if(spawnTimer >= enemySpawnCooldown)
+        if (spawnTimer >= enemySpawnCooldown)
         {
             int spawnPoint = UnityEngine.Random.Range(0, spawnPoints.Count);
             int enemyIndex = UnityEngine.Random.Range(0, enemyPrefabs.Count);
@@ -61,5 +75,10 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("Enemy Spawned At: " + spawnPoints[spawnPoint].transform.name);
         }
+    }
+
+    void RoomClearUpdate()
+    {
+
     }
 }

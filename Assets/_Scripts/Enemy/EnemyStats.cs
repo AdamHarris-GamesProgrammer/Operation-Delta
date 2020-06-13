@@ -25,4 +25,7 @@ public class EnemyStats : ScriptableObject
     public bool canCrawl = false;
     public bool canSprint = false;
 
+    [Header("Score Settings")]
+    public int scoreValue = 100;
+
 }

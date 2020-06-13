@@ -64,7 +64,10 @@ public class PlayerMelee : MonoBehaviour
             {
                 if (canAttack)
                 {
-                    audioSource.Play();
+                    if (!audioSource.isPlaying)
+                    {
+                        audioSource.Play();
+                    }
                     anim.Play("Sword");
                     Attack();
                     canAttack = false;
@@ -76,17 +79,6 @@ public class PlayerMelee : MonoBehaviour
 
     void Attack()
     {
-        RaycastHit hit;
-
-        //if (Physics.SphereCast(camera.transform.position, attackRange, camera.transform.forward, out hit, 1.0f, layer))
-        //{
-        //    Debug.Log(hit.transform.name);
-        //    if (hit.transform.gameObject.CompareTag("Enemy"))
-        //    {
-        //        hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(swordDamage);
-        //    }
-        //}
-
         Collider[] hitColliders = Physics.OverlapSphere(camera.transform.position, attackRange, layer);
         
         for(int i = 0; i < hitColliders.Length; i++)
