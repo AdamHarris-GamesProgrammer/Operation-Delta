@@ -11,8 +11,8 @@ public class ScoreTextController : MonoBehaviour
     [HideInInspector] public Text scoreText;
 
     public int gameScore { get; set; }
+    public int highscore { get; set; }
 
-    private int highscore;
     private string mapKey;
 
     void Awake()
