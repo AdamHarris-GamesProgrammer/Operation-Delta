@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
             instance = this;
         }
 
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -60,7 +60,8 @@ public class PlayerController : MonoBehaviour
     {
         isAlive = false;
         Debug.Log("Dead");
-        GameManager.instance.isGameOver = true;
+
+        GameManager.instance.OnDeath();
 
         audioSource.clip = deathSound;
         audioSource.Play();

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject spawnpointsParent;
     [HideInInspector] public List<Transform> spawnPoints;
+
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverBgObject;
+
 
     void Awake()
     {
@@ -80,5 +85,12 @@ public class GameManager : MonoBehaviour
     void RoomClearUpdate()
     {
 
+    }
+
+    public void OnDeath()
+    {
+        isGameOver = true;
+
+        gameOverBgObject.SetActive(true);
     }
 }
