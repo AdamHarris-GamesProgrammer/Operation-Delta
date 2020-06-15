@@ -205,8 +205,9 @@ MonoBehaviour:
   eyes: {fileID: 1605056981502322735}
   layer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 2048
   deathSound: {fileID: 8300000, guid: e7a4da90853e48b45acd30c373398738, type: 3}
+  knockbackForce: 6
 --- !u!82 &6972406763762604964
 AudioSource:
   m_ObjectHideFlags: 0

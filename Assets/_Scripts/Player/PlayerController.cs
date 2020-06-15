@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     public bool canBeDamaged = false;
 
 
+    public GameObject go;
+
+
     private void Awake()
     {
         if(instance != null)
@@ -39,6 +42,8 @@ public class PlayerController : MonoBehaviour
         //DontDestroyOnLoad(this);
 
         audioSource = GetComponent<AudioSource>();
+
+        go = this.gameObject;
     }
 
     private void Start()

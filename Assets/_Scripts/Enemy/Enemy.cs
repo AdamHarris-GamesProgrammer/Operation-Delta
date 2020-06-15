@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     [Header("Sound Settings")]
     [SerializeField] private AudioClip deathSound;
 
+    [SerializeField] private float knockbackForce = 25.0f;
+
     private float health;
 
     private float attackTimer = 0.0f;
@@ -22,6 +24,9 @@ public class Enemy : MonoBehaviour
     bool isDead = false;
 
     NavMeshAgent agent;
+
+    bool knockback = false;
+    Vector3 direction;
 
     private AudioSource audioSource;
 
@@ -49,6 +54,12 @@ public class Enemy : MonoBehaviour
         attackTimer += Time.deltaTime;
         if (!isDead)
         {
+            if (knockback)
+            {
+                agent.velocity = direction * knockbackForce;
+            }
+
+
             if (health <= 0.0f)
             {
                 isDead = true;
@@ -66,27 +77,9 @@ public class Enemy : MonoBehaviour
 
                 if (agent.remainingDistance <= stats.attackRange && attackTimer >= stats.attackRate)
                 {
-                    attackTimer = 0.0f;
-
-                    animator.SetTrigger("attack");
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(eyes.transform.position, eyes.transform.forward, out hit, stats.attackRange, layer))
-                    {
-                        if (hit.transform.gameObject.CompareTag("Player"))
-                        {
-
-                            PlayerController.instance.TakeDamage(stats.damage * stats.damageMultiplier);
-
-
-                            //Debug.Log("Player Hit");
-                        }
-                    }
+                    Attack();
                 }
-
-
                 //Debug.Log("Anim Playing: " + anim.isPlaying);
-
 
                 agent.destination = goal.position;
             }
@@ -101,9 +94,26 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void Attack()
+    {
+        attackTimer = 0.0f;
+
+        animator.SetTrigger("attack");
+        RaycastHit hit;
+
+        if (Physics.Raycast(eyes.transform.position, eyes.transform.forward, out hit, stats.attackRange, layer))
+        {
+            if (hit.transform.gameObject.CompareTag("Player"))
+            {
+                PlayerController.instance.TakeDamage(stats.damage * stats.damageMultiplier);
+            }
+        }
+    }
 
     public void TakeDamage(float damageIn, AudioClip desiredSound)
     {
+        Debug.Log("Take Damage Called");
+
         if (!audioSource.isPlaying)
         {
             if(desiredSound != null)
@@ -112,9 +122,28 @@ public class Enemy : MonoBehaviour
             }
             audioSource.Play();
             Debug.Log("Played");
+
+            direction = PlayerController.instance.go.transform.forward.normalized;
+            StartCoroutine("Knockback");
+
         }
 
-        health -= damageIn;
 
+        health -= damageIn;
+    }
+
+    IEnumerator Knockback()
+    {
+        knockback = true;
+
+        agent.updateRotation = false;
+
+        //Change nav mesh variables
+
+        yield return new WaitForSeconds(0.2f); //TODO: Replace with field
+
+        agent.updateRotation = true;
+
+        knockback = false;
     }
 }

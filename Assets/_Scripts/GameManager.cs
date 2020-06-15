@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject spawnpointsParent;
     [HideInInspector] public List<Transform> spawnPoints;
+    public bool spawningEnabled = false;
 
     [Header("Game Over UI")]
     [SerializeField] private GameObject gameOverBgObject;
@@ -70,21 +71,25 @@ public class GameManager : MonoBehaviour
 
     void SurvivalUpdate()
     {
-        spawnTimer += Time.deltaTime;
-
-        if (spawnTimer >= enemySpawnCooldown)
+        if (spawningEnabled)
         {
-            int spawnPoint = UnityEngine.Random.Range(0, spawnPoints.Count);
-            int enemyIndex = UnityEngine.Random.Range(0, enemyPrefabs.Count);
+            spawnTimer += Time.deltaTime;
+
+            if (spawnTimer >= enemySpawnCooldown)
+            {
+                int spawnPoint = UnityEngine.Random.Range(0, spawnPoints.Count);
+                int enemyIndex = UnityEngine.Random.Range(0, enemyPrefabs.Count);
 
 
-            GameObject enemyInstance = Instantiate(enemyPrefabs[enemyIndex]);
-            enemyInstance.transform.position = spawnPoints[spawnPoint].position;
+                GameObject enemyInstance = Instantiate(enemyPrefabs[enemyIndex]);
+                enemyInstance.transform.position = spawnPoints[spawnPoint].position;
 
-            spawnTimer = 0.0f;
+                spawnTimer = 0.0f;
 
-            Debug.Log("Enemy Spawned At: " + spawnPoints[spawnPoint].transform.name);
+                Debug.Log("Enemy Spawned At: " + spawnPoints[spawnPoint].transform.name);
+            }
         }
+
     }
 
     void RoomClearUpdate()
