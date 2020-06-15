@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     private float attackTimer = 0.0f;
 
+    [SerializeField] private int crawlMask;
+
     bool isDead = false;
 
     NavMeshAgent agent;
@@ -60,6 +62,16 @@ public class Enemy : MonoBehaviour
                 agent.velocity = direction * knockbackForce;
             }
 
+            if(agent.areaMask == 3)
+            {
+                Debug.Log("Crawling");
+                agent.speed = stats.movementSpeed * stats.crawlingSpeedFactor;
+            }
+
+            
+
+            //Debug.Log(NavMesh.GetAreaFromName("Crawlable"));
+            Debug.Log(agent.areaMask);
 
             if (health <= 0.0f)
             {
@@ -70,7 +82,7 @@ public class Enemy : MonoBehaviour
             {
                 agent.speed = stats.movementSpeed;
 
-                if (agent.remainingDistance > 10.0f && stats.canSprint)
+                if (agent.remainingDistance > 10.0f && stats.canSprint && agent.areaMask != NavMesh.GetAreaFromName("Crawlable"))
                 {
                     //Debug.Log("Sprinting");
                     agent.speed = stats.movementSpeed * stats.sprintingSpeedFactor;
