@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,13 +6,13 @@ public class Enemy : MonoBehaviour
 {
     private Transform goal;
 
+    [Header("Miscellaneous Settings")]
     [SerializeField] private EnemyStats stats;
     [SerializeField] private Transform eyes;
     [SerializeField] private LayerMask layer;
 
-    [Header("Sound Settings")]
-    [SerializeField] private AudioClip deathSound;
 
+    [Header("Knockback Settings")]
     [SerializeField] private float knockbackForce = 25.0f;
 
     private float health;
@@ -46,6 +44,9 @@ public class Enemy : MonoBehaviour
     {
         agent.speed = stats.movementSpeed;
         health = stats.health;
+
+        audioSource.clip = stats.spawnSound;
+        audioSource.Play();
     }
 
     // Update is called once per frame
@@ -79,14 +80,15 @@ public class Enemy : MonoBehaviour
                 {
                     Attack();
                 }
-                //Debug.Log("Anim Playing: " + anim.isPlaying);
 
                 agent.destination = goal.position;
             }
         }
         else
         {
-            //TODO: Enemy Death sounds
+
+            audioSource.clip = stats.deathSound;
+            audioSource.Play();
 
             ScoreTextController.instance.ScoreUp(stats.scoreValue);
 
@@ -101,6 +103,9 @@ public class Enemy : MonoBehaviour
         animator.SetTrigger("attack");
         RaycastHit hit;
 
+        audioSource.clip = stats.attackSound;
+        audioSource.Play();
+
         if (Physics.Raycast(eyes.transform.position, eyes.transform.forward, out hit, stats.attackRange, layer))
         {
             if (hit.transform.gameObject.CompareTag("Player"))
@@ -110,24 +115,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damageIn, AudioClip desiredSound)
+    public void TakeDamage(float damageIn)
     {
-        Debug.Log("Take Damage Called");
-
         if (!audioSource.isPlaying)
         {
-            if(desiredSound != null)
-            {
-                audioSource.clip = desiredSound;
-            }
+            audioSource.clip = stats.damagedSound;
             audioSource.Play();
-            Debug.Log("Played");
 
             direction = PlayerController.instance.go.transform.forward.normalized;
             StartCoroutine("Knockback");
 
         }
-
 
         health -= damageIn;
     }
@@ -137,12 +135,12 @@ public class Enemy : MonoBehaviour
         knockback = true;
 
         agent.updateRotation = false;
+        agent.speed = stats.movementSpeed * stats.damagedSpeedFactor;
 
-        //Change nav mesh variables
-
-        yield return new WaitForSeconds(0.2f); //TODO: Replace with field
+        yield return new WaitForSeconds(stats.knockbackTime); 
 
         agent.updateRotation = true;
+        agent.speed = stats.movementSpeed;
 
         knockback = false;
     }

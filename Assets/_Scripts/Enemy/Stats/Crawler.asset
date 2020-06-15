@@ -23,6 +23,12 @@ MonoBehaviour:
   movementSpeed: 4
   sprintingSpeedFactor: 1.5
   crawlingSpeedFactor: 0.5
+  damagedSpeedFactor: 0.5
   canCrawl: 1
   canSprint: 1
   scoreValue: 100
+  spawnSound: {fileID: 8300000, guid: 56f5f5c5a039a724885364e1ec72a019, type: 3}
+  damagedSound: {fileID: 8300000, guid: 25ded33e39cfabc40ad7c1593482e5d4, type: 3}
+  attackSound: {fileID: 8300000, guid: 60648bb2758ece34b8a14f2f7eb0b60f, type: 3}
+  deathSound: {fileID: 8300000, guid: e7a4da90853e48b45acd30c373398738, type: 3}
+  knockbackTime: 0.2
