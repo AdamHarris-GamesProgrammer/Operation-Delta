@@ -145,7 +145,7 @@ MonoBehaviour:
     value: 0
   colorFilter:
     overrideState: 1
-    value: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+    value: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
   hueShift:
     overrideState: 0
     value: 0
@@ -195,8 +195,8 @@ MonoBehaviour:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
   gain:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: -0.6791172}
+    overrideState: 1
+    value: {x: 1, y: 1, z: 1, w: -0.050933775}
   masterCurve:
     overrideState: 0
     value:
