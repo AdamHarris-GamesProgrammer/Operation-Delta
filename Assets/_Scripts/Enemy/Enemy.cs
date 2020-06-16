@@ -4,26 +4,24 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    private Transform goal;
+    protected Transform goal;
 
     [Header("Miscellaneous Settings")]
-    [SerializeField] private EnemyStats stats;
+    [SerializeField] protected EnemyStats stats;
     [SerializeField] private Transform eyes;
     [SerializeField] private LayerMask layer;
 
 
     [Header("Knockback Settings")]
-    [SerializeField] private float knockbackForce = 25.0f;
+    [SerializeField] protected float knockbackForce = 25.0f;
 
-    private float health;
+    protected float health;
 
-    private float attackTimer = 0.0f;
+    protected float attackTimer = 0.0f;
 
-    [SerializeField] private int crawlMask;
+    protected bool isDead = false;
 
-    bool isDead = false;
-
-    NavMeshAgent agent;
+    protected NavMeshAgent agent;
 
     bool knockback = false;
     Vector3 direction;
@@ -32,18 +30,13 @@ public class Enemy : MonoBehaviour
 
     private Animator animator;
 
-
-    void Awake()
+    protected void SetAttributes()
     {
         agent = GetComponent<NavMeshAgent>();
         goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         animator = GetComponentInChildren<Animator>();
         audioSource = GetComponent<AudioSource>();
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         agent.speed = stats.movementSpeed;
         health = stats.health;
 
@@ -52,63 +45,39 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
+        //Debug.Log("Enemy Update");
+
         attackTimer += Time.deltaTime;
-        if (!isDead)
+
+        if (health <= 0.0f)
         {
-            if (knockback)
-            {
-                agent.velocity = direction * knockbackForce;
-            }
-
-            if(agent.areaMask == 3)
-            {
-                Debug.Log("Crawling");
-                agent.speed = stats.movementSpeed * stats.crawlingSpeedFactor;
-            }
-
-            
-
-            //Debug.Log(NavMesh.GetAreaFromName("Crawlable"));
-            Debug.Log(agent.areaMask);
-
-            if (health <= 0.0f)
-            {
-                isDead = true;
-            }
-
-            if (PlayerController.instance.isAlive)
-            {
-                agent.speed = stats.movementSpeed;
-
-                if (agent.remainingDistance > 10.0f && stats.canSprint && agent.areaMask != NavMesh.GetAreaFromName("Crawlable"))
-                {
-                    //Debug.Log("Sprinting");
-                    agent.speed = stats.movementSpeed * stats.sprintingSpeedFactor;
-                }
-
-                if (agent.remainingDistance <= stats.attackRange && attackTimer >= stats.attackRate)
-                {
-                    Attack();
-                }
-
-                agent.destination = goal.position;
-            }
+            isDead = true;
         }
-        else
+
+        if (isDead)
         {
+            OnDeath();
+        }
 
-            audioSource.clip = stats.deathSound;
-            audioSource.Play();
-
-            ScoreTextController.instance.ScoreUp(stats.scoreValue);
-
-            Destroy(this.gameObject);
+        if (knockback)
+        {
+            agent.velocity = direction * knockbackForce;
         }
     }
 
-    void Attack()
+    protected void OnDeath()
+    {
+        audioSource.clip = stats.deathSound;
+        audioSource.Play();
+
+        ScoreTextController.instance.ScoreUp(stats.scoreValue);
+
+        Destroy(this.gameObject);
+    }
+
+    protected void Attack()
     {
         attackTimer = 0.0f;
 
@@ -142,7 +111,7 @@ public class Enemy : MonoBehaviour
         health -= damageIn;
     }
 
-    IEnumerator Knockback()
+    protected IEnumerator Knockback()
     {
         knockback = true;
 

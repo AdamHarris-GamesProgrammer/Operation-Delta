@@ -81,8 +81,9 @@ GameObject:
   - component: {fileID: 1605056981382851361}
   - component: {fileID: 1605056981382851374}
   - component: {fileID: 1605056981382851375}
-  - component: {fileID: 1605056981382851372}
   - component: {fileID: 6972406763762604964}
+  - component: {fileID: 1972390844570250153}
+  - component: {fileID: 5107582908454681186}
   m_Layer: 10
   m_Name: Crawler
   m_TagString: Enemy
@@ -189,25 +190,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1605056981382851372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605056981382851373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe294a9170cf684c9e407fc2e86cfba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: f8ddbaa942b500140b958dfb517732f8, type: 2}
-  eyes: {fileID: 1605056981502322735}
-  layer:
-    serializedVersion: 2
-    m_Bits: 2048
-  deathSound: {fileID: 8300000, guid: e7a4da90853e48b45acd30c373398738, type: 3}
-  knockbackForce: 6
 --- !u!82 &6972406763762604964
 AudioSource:
   m_ObjectHideFlags: 0
@@ -304,6 +286,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1972390844570250153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605056981382851373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e054e9c141a67124f96cde993223c5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: f8ddbaa942b500140b958dfb517732f8, type: 2}
+  eyes: {fileID: 1605056981502322735}
+  layer:
+    serializedVersion: 2
+    m_Bits: 2048
+  knockbackForce: 6
+  isCrawling: 0
+--- !u!54 &5107582908454681186
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605056981382851373}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1605056981502322732
 GameObject:
   m_ObjectHideFlags: 0
