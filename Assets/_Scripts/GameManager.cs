@@ -45,10 +45,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(Transform go in spawnpointsParent.transform)
+        if(spawnpointsParent != null)
         {
-            spawnPoints.Add(go);
+            foreach (Transform go in spawnpointsParent.transform)
+            {
+                spawnPoints.Add(go);
+            }
         }
+
     }
 
     // Update is called once per frame

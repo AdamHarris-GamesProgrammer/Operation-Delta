@@ -91,7 +91,6 @@ public class Enemy : MonoBehaviour
 
         if (Physics.Raycast(eyes.transform.position, eyes.transform.forward, out hit, stats.attackRange, layer))
         {
-            Debug.Log("Enemy is attacking: " + hit.collider.gameObject.name);
             PlayerController.instance.TakeDamage(stats.damage * stats.damageMultiplier);
         }
     }

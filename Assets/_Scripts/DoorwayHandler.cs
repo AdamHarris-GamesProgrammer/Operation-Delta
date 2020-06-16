@@ -4,12 +4,11 @@ public class DoorwayHandler : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name + " has entered the trigger");
+        //Debug.Log(other.gameObject.name + " has entered the trigger");
 
         Crawler crawlerComponent = other.gameObject.GetComponent<Crawler>();
         if (crawlerComponent)
         {
-            Debug.Log("Crawler Component Found");
             crawlerComponent.OnCrawl();
         }
 
@@ -22,12 +21,11 @@ public class DoorwayHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.gameObject.name + " has left the trigger");
+        //Debug.Log(other.gameObject.name + " has left the trigger");
 
         Crawler crawlerComponent = other.gameObject.GetComponent<Crawler>();
         if (crawlerComponent)
         {
-            Debug.Log("Crawler Component Found");
             crawlerComponent.OnCrawlExit();
         }
 
