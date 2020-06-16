@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
     private Animator animator;
 
-    protected void SetAttributes()
+    protected void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -48,6 +48,8 @@ public class Enemy : MonoBehaviour
     protected void Update()
     {
         //Debug.Log("Enemy Update");
+
+        Debug.DrawRay(eyes.transform.position, eyes.transform.forward, Color.yellow);
 
         attackTimer += Time.deltaTime;
 
@@ -89,10 +91,8 @@ public class Enemy : MonoBehaviour
 
         if (Physics.Raycast(eyes.transform.position, eyes.transform.forward, out hit, stats.attackRange, layer))
         {
-            if (hit.transform.gameObject.CompareTag("Player"))
-            {
-                PlayerController.instance.TakeDamage(stats.damage * stats.damageMultiplier);
-            }
+            Debug.Log("Enemy is attacking: " + hit.collider.gameObject.name);
+            PlayerController.instance.TakeDamage(stats.damage * stats.damageMultiplier);
         }
     }
 

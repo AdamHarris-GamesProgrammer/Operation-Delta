@@ -12,6 +12,12 @@ public class DoorwayHandler : MonoBehaviour
             Debug.Log("Crawler Component Found");
             crawlerComponent.OnCrawl();
         }
+
+        PlayerMovement playerComponent = other.gameObject.GetComponent<PlayerMovement>();
+        if (playerComponent)
+        {
+            playerComponent.canStand = false;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -23,6 +29,12 @@ public class DoorwayHandler : MonoBehaviour
         {
             Debug.Log("Crawler Component Found");
             crawlerComponent.OnCrawlExit();
+        }
+
+        PlayerMovement playerComponent = other.gameObject.GetComponent<PlayerMovement>();
+        if (playerComponent)
+        {
+            playerComponent.canStand = true;
         }
     }
 }

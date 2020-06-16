@@ -10,7 +10,7 @@ public class Crawler : Enemy
 
     private void Awake()
     {
-        SetAttributes();
+        base.Awake();
     }
 
     //+0.5 on stand -0.5 y offset on crouch

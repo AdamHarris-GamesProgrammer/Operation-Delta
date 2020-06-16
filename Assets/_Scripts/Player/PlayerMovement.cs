@@ -26,13 +26,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float controllerYOffsetOnCrouch = -0.75f;
     [SerializeField] private float controllerHeightOffsetOnCrouch = -1.45f;
 
-    //Controller crouch changed y offset = -0.75 (diff -0.75f)
-    //Controller crouch changed height = 1.65 (diff -1.45f)
-
     private float speedFactor = 1.0f;
 
     bool isGrounded;
     bool isCrouched = false;
+    public bool canStand = true;
     bool isSprinting = false;
 
     Vector3 velocity;
@@ -55,9 +53,25 @@ public class PlayerMovement : MonoBehaviour
             //Crouch
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                isCrouched = !isCrouched;
+                if (isCrouched)
+                {
+                    if (canStand)
+                    {
+                        isCrouched = false;
+                        CrouchHeight();
+                    }
+                    else
+                    {
+                        isCrouched = true;
+                    }
+                }
+                else
+                {
+                    isCrouched = true;
+                    CrouchHeight();
+                }
 
-                CrouchHeight();
+                
             }
 
             //Sprinting

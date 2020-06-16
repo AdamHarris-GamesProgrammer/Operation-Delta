@@ -24529,7 +24529,6 @@ GameObject:
   - component: {fileID: 958568515}
   - component: {fileID: 958568517}
   - component: {fileID: 958568518}
-  - component: {fileID: 958568519}
   - component: {fileID: 958568520}
   m_Layer: 11
   m_Name: FPSPlayer
@@ -24597,7 +24596,8 @@ MonoBehaviour:
     m_Bits: 256
   yOffsetOnCrouch: -1.25
   controllerYOffsetOnCrouch: -0.75
-  controllerHeightOffsetOnCrouch: 1.45
+  controllerHeightOffsetOnCrouch: 1.2
+  canStand: 1
 --- !u!114 &958568518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24617,19 +24617,6 @@ MonoBehaviour:
   healthAmount: 20
   canBeDamaged: 0
   go: {fileID: 0}
---- !u!135 &958568519
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958568514}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &958568520
 AudioSource:
   m_ObjectHideFlags: 0
