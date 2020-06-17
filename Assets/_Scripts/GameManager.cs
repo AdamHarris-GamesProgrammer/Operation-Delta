@@ -15,13 +15,13 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public float levelTimer;
 
-    public List<GameObject> enemyPrefabs;
+
 
     enum GameMode { Surivial, RoomClear };
     [SerializeField] private GameMode gameMode;
 
 
-    public List<Transform> defaultSpawnPoints;
+ 
     public bool spawningEnabled = false;
 
     [Header("Game Over UI")]
@@ -73,23 +73,7 @@ public class GameManager : MonoBehaviour
     {
         if (spawningEnabled)
         {
-            spawnTimer += Time.deltaTime;
 
-            if (spawnTimer >= enemySpawnCooldown)
-            {
-                int spawnPoint = UnityEngine.Random.Range(0, defaultSpawnPoints.Count);
-
-                Debug.Log("Spawn point index: " + spawnPoint);
-                int enemyIndex = UnityEngine.Random.Range(0, enemyPrefabs.Count);
-
-
-                GameObject enemyInstance = Instantiate(enemyPrefabs[enemyIndex]);
-                enemyInstance.transform.position = defaultSpawnPoints[spawnPoint].position;
-
-                spawnTimer = 0.0f;
-
-                Debug.Log("Enemy Spawned At: " + defaultSpawnPoints[spawnPoint].transform.name);
-            }
         }
 
     }

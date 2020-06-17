@@ -67,12 +67,12 @@ public class PlayerShoot : MonoBehaviour
             if (reloading)
             {
                 reloadTimer -= Time.deltaTime;
-                Debug.Log("Time until reload: " + reloadTimer);
+                //Debug.Log("Time until reload: " + reloadTimer);
                 if (reloadTimer <= 0.0f)
                 {
                     reloading = false;
                     currentClip = magazineSize;
-                    Debug.Log("Reload Complete");
+                    //Debug.Log("Reload Complete");
                 }
             }
 

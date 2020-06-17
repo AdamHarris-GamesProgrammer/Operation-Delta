@@ -129,6 +129,60 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 642093158}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &13773603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 13773605}
+  - component: {fileID: 13773604}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &13773604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13773603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58174e664c4c9004bbe3224960018911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveNumber: 0
+  baseAmountOfEnemies: 5
+  timeBetweenEachSpawnMin: 1.2
+  timeBetweenEachSpawnMax: 7
+  enemyIncreasePerWave: 1.4
+  timeBetweenWaves: 5
+  enemyPrefabs:
+  - {fileID: 1605056981382851373, guid: 55e23f49357731644a57d1f1185f82ae, type: 3}
+  defaultSpawnPoints:
+  - {fileID: 1323067848}
+  - {fileID: 338624378}
+--- !u!4 &13773605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13773603}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &17002564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28159,12 +28213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawnCooldown: 5
   levelTimer: 0
-  enemyPrefabs:
-  - {fileID: 1605056981382851373, guid: 55e23f49357731644a57d1f1185f82ae, type: 3}
   gameMode: 0
-  defaultSpawnPoints:
-  - {fileID: 1323067848}
-  - {fileID: 338624378}
   spawningEnabled: 1
   gameOverBgObject: {fileID: 69038742}
   gameOverBgPanelImage: {fileID: 1859011645}

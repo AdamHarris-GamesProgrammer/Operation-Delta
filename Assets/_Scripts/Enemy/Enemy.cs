@@ -74,6 +74,8 @@ public class Enemy : MonoBehaviour
         audioSource.clip = stats.deathSound;
         audioSource.Play();
 
+
+        WaveManager.instance.EnemyKilled();
         ScoreTextController.instance.ScoreUp(stats.scoreValue);
 
         Destroy(this.gameObject);
