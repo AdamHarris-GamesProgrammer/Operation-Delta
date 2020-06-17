@@ -27881,7 +27881,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawnCooldown: 5
   levelTimer: 0
-  enemyPrefabs: []
+  enemyPrefabs:
+  - {fileID: 0}
   gameMode: 0
   defaultSpawnPoints:
   - {fileID: 1323067848}
