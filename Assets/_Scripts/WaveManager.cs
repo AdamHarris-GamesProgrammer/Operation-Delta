@@ -61,7 +61,7 @@ public class WaveManager : MonoBehaviour
 
         if (!waveOver)
         {
-            if (enemiesSpawned <= totalAmountOfEnemies)
+            if (enemiesSpawned < totalAmountOfEnemies)
             {
                 spawnTimer += Time.deltaTime;
 
