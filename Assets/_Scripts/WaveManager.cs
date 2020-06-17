@@ -2,18 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
-    [HideInInspector] public int waveNumber = 0;
+    [HideInInspector] public int waveNumber = 1;
     [SerializeField] private int baseAmountOfEnemies = 10;
-    [SerializeField] private float timeBetweenEachSpawnMin = 1.2f;
-    [SerializeField] private float timeBetweenEachSpawnMax = 7.0f;
+    [SerializeField] private float timeBetweenEachSpawnMin = 3.5f;
+    [SerializeField] private float timeBetweenEachSpawnMax = 12.0f;
     [SerializeField] private float enemyIncreasePerWave = 1.2f;
     [SerializeField] private float timeBetweenWaves = 5.0f;
 
     public List<GameObject> enemyPrefabs;
     public List<Transform> defaultSpawnPoints;
+
+    [Header("UI Settings")]
+    [SerializeField] private Text waveText;
+    [SerializeField] private Text waveTimerText;
+    [SerializeField] private GameObject waveCompleteGO;
 
     private int enemiesLeft;
     bool waveOver = false;
@@ -44,6 +50,9 @@ public class WaveManager : MonoBehaviour
         totalAmountOfEnemies = baseAmountOfEnemies;
         timeBetweenEnemySpawns = UnityEngine.Random.Range(timeBetweenEachSpawnMin, timeBetweenEachSpawnMax);
         enemiesLeft = totalAmountOfEnemies;
+
+        waveText.text = "Wave: 1";
+        waveNumber = 1;
     }
 
 
@@ -85,13 +94,17 @@ public class WaveManager : MonoBehaviour
                 NextWave();
             }
 
-            waveTimer += Time.deltaTime;
+            waveTimer -= Time.deltaTime;
+            waveTimerText.text = waveTimer.ToString("F2") + "s";
 
-            if(waveTimer >= timeBetweenWaves)
+            if(waveTimer <= 0.0f)
             {
                 waveOver = false;
                 bCalled = false;
                 waveTimer = 0;
+
+                waveTimerText.gameObject.SetActive(false);
+                waveCompleteGO.SetActive(false);
             }
 
         }
@@ -123,9 +136,17 @@ public class WaveManager : MonoBehaviour
 
         baseAmountOfEnemies = Mathf.RoundToInt(baseAmountOfEnemies * enemyIncreasePerWave);
         totalAmountOfEnemies = baseAmountOfEnemies;
+
         enemiesSpawned = 0;
         enemiesLeft = baseAmountOfEnemies;
 
         Debug.Log("Wave Number: " + waveNumber + "\tAmount of Enemies: " + totalAmountOfEnemies);
+
+        waveText.text = "Wave: " + waveNumber;
+
+        waveTimer = timeBetweenWaves;
+        waveCompleteGO.SetActive(true);
+        waveTimerText.text = "5.00s";
+        waveTimerText.gameObject.SetActive(true);
     }
 }

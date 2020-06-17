@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerShoot : MonoBehaviour
 
     [Header("Gun Settings")]
     [SerializeField] private float range = 100.0f;
+    [SerializeField] private int totalBullets = 240;
 
     [Tooltip("Amount of bullets fired per second")]
     [SerializeField] private float fireRate = 5.0f;
@@ -28,6 +30,9 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private ParticleSystem barrelSmokeParticles;
     [SerializeField] private ParticleSystem traceParticles;
 
+    [Header("UI Settings")]
+    [SerializeField] private Image clipImage;
+    [SerializeField] private Text totalAmmoLeft;
 
     private Animation anim;
 
@@ -57,6 +62,8 @@ public class PlayerShoot : MonoBehaviour
     {
         timeNeededBetweenShots = 1.0f / fireRate;
         currentClip = magazineSize;
+
+        totalAmmoLeft.text = totalBullets.ToString();
     }
 
     // Update is called once per frame
@@ -66,20 +73,23 @@ public class PlayerShoot : MonoBehaviour
         {
             if (reloading)
             {
-                reloadTimer -= Time.deltaTime;
-                //Debug.Log("Time until reload: " + reloadTimer);
-                if (reloadTimer <= 0.0f)
+                reloadTimer += Time.deltaTime;
+
+                float fill = reloadTimer / reloadDuration;
+                clipImage.fillAmount = fill;
+
+                if (reloadTimer >= reloadDuration)
                 {
                     reloading = false;
                     currentClip = magazineSize;
-                    //Debug.Log("Reload Complete");
+                    clipImage.fillAmount = 1.0f;
                 }
             }
 
             timeSinceLastShot += Time.deltaTime;
             if (Input.GetMouseButton(0))
             {
-                if (timeSinceLastShot >= timeNeededBetweenShots && !reloading)
+                if (timeSinceLastShot >= timeNeededBetweenShots && !reloading && totalBullets > 0)
                 {
                     Shoot();
                 }
@@ -100,6 +110,9 @@ public class PlayerShoot : MonoBehaviour
         timeSinceLastShot = 0.0f;
         currentClip--;
 
+        totalBullets--;
+        totalAmmoLeft.text = totalBullets.ToString();
+
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layer))
         {
@@ -112,8 +125,12 @@ public class PlayerShoot : MonoBehaviour
 
         if(currentClip == 0)
         {
-            reloadTimer = reloadDuration;
+            reloadTimer = 0.0f;
             reloading = true;
         }
+
+        float fill = (float)currentClip / (float)magazineSize;
+
+        clipImage.fillAmount = fill;
     }
 }
