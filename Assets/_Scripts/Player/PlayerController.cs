@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip damagedSound;
     [SerializeField] private AudioClip deathSound;
 
+    [Header("Gameplay Settings")]
+    [SerializeField] LayerMask doorLayer;
+
     public float healthAmount = 100.0f;
     private float health;
 
@@ -30,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Destroy(this.gameObject);
         }
@@ -57,7 +60,18 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameManager.instance.isGameOver)
         {
-            
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                RaycastHit hit;
+
+                Camera cam = go.GetComponentInChildren<Camera>();
+
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 1.5f, doorLayer))
+                {
+                    hit.collider.gameObject.GetComponent<Door>().Unlock();
+                }
+
+            }
         }
     }
 

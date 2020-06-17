@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DoorwayHandler : MonoBehaviour
+public class TunnelController : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {

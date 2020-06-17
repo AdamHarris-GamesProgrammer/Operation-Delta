@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameMode gameMode;
 
 
-    public GameObject spawnpointsParent;
-    [HideInInspector] public List<Transform> spawnPoints;
+    public List<Transform> defaultSpawnPoints;
     public bool spawningEnabled = false;
 
     [Header("Game Over UI")]
@@ -45,13 +44,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(spawnpointsParent != null)
-        {
-            foreach (Transform go in spawnpointsParent.transform)
-            {
-                spawnPoints.Add(go);
-            }
-        }
 
     }
 
@@ -81,16 +73,16 @@ public class GameManager : MonoBehaviour
 
             if (spawnTimer >= enemySpawnCooldown)
             {
-                int spawnPoint = UnityEngine.Random.Range(0, spawnPoints.Count);
+                int spawnPoint = UnityEngine.Random.Range(0, defaultSpawnPoints.Count);
                 int enemyIndex = UnityEngine.Random.Range(0, enemyPrefabs.Count);
 
 
                 GameObject enemyInstance = Instantiate(enemyPrefabs[enemyIndex]);
-                enemyInstance.transform.position = spawnPoints[spawnPoint].position;
+                enemyInstance.transform.position = defaultSpawnPoints[spawnPoint].position;
 
                 spawnTimer = 0.0f;
 
-                Debug.Log("Enemy Spawned At: " + spawnPoints[spawnPoint].transform.name);
+                Debug.Log("Enemy Spawned At: " + defaultSpawnPoints[spawnPoint].transform.name);
             }
         }
 

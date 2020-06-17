@@ -10290,6 +10290,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   damagedSound: {fileID: 8300000, guid: 1bef2be927497bc4e8b37d96af4f885f, type: 3}
   deathSound: {fileID: 8300000, guid: 16b5bd48d3eee7f40a2bd034b054b0b6, type: 3}
+  doorLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   healthAmount: 20
   canBeDamaged: 0
   go: {fileID: 0}
