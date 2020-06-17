@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverBgObject;
     [SerializeField] private Image gameOverBgPanelImage;
 
+    private NavMeshBaker baker;
+
 
     void Awake()
     {
@@ -39,12 +41,14 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        baker = GetComponent<NavMeshBaker>();
+        baker.BakeMeshes();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void DoorUnlocked()
     {
-
+        baker.BakeMeshes();
     }
 
     // Update is called once per frame
@@ -74,6 +78,8 @@ public class GameManager : MonoBehaviour
             if (spawnTimer >= enemySpawnCooldown)
             {
                 int spawnPoint = UnityEngine.Random.Range(0, defaultSpawnPoints.Count);
+
+                Debug.Log("Spawn point index: " + spawnPoint);
                 int enemyIndex = UnityEngine.Random.Range(0, enemyPrefabs.Count);
 
 

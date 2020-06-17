@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private float costToOpen = 500.0f;
+    [SerializeField] private int costToOpen = 500;
 
     [SerializeField] private List<Transform> correspondingWindows;
 
@@ -23,25 +23,30 @@ public class Door : MonoBehaviour
 
     public void Unlock()
     {
-        Debug.Log("Unlock Called");
-
-        foreach( Transform spawnpoint in correspondingWindows)
+        if (ScoreTextController.instance.gameScore >= costToOpen)
         {
-            bool isSpawnpointUsed = false;
-            foreach(Transform listSpawnpoint in GameManager.instance.defaultSpawnPoints)
+            Debug.Log("Unlock Called");
+
+            ScoreTextController.instance.ScoreUp(-costToOpen);
+
+            foreach (Transform spawnpoint in correspondingWindows)
             {
-                if(spawnpoint == listSpawnpoint)
+                bool isSpawnpointUsed = false;
+                foreach (Transform listSpawnpoint in GameManager.instance.defaultSpawnPoints)
                 {
-                    isSpawnpointUsed = true;
+                    if (spawnpoint == listSpawnpoint)
+                    {
+                        isSpawnpointUsed = true;
+                    }
+                }
+
+                if (!isSpawnpointUsed)
+                {
+                    GameManager.instance.defaultSpawnPoints.Add(spawnpoint);
                 }
             }
 
-            if (!isSpawnpointUsed)
-            {
-                GameManager.instance.defaultSpawnPoints.Add(spawnpoint);
-            }
+            Destroy(this.gameObject);
         }
-
-        Destroy(this.gameObject);
     }
 }

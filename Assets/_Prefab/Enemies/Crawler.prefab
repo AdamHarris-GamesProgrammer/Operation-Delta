@@ -100,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 1605056981382851373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.5, z: 1.2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1605056981502322735}
   - {fileID: 3817486724251627976}
@@ -182,7 +182,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -303,8 +303,9 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 2048
-  knockbackForce: 6
+  knockbackForce: 3
   isCrawling: 0
+  yScaleOffset: 0.5
 --- !u!54 &5107582908454681186
 Rigidbody:
   m_ObjectHideFlags: 0
