@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPickup : MonoBehaviour
+public class Pickup : MonoBehaviour
 {
-    [SerializeField] private int ammoAmount = 30;
+    protected virtual void PickupAction()
+    {
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerController.instance.go.GetComponentInChildren<PlayerShoot>().AddAmmo(ammoAmount);
+            PickupAction();
 
             Destroy(this.gameObject);
         }

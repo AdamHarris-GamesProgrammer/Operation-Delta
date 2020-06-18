@@ -12,11 +12,12 @@ public class PlayerShoot : MonoBehaviour
     [Header("Gun Settings")]
     [SerializeField] private float range = 100.0f;
     [SerializeField] private int totalBullets = 240;
+    [SerializeField] private float bulletDamage = 15.0f;
+    public float damageFactor = 1.0f;
 
     [Tooltip("Amount of bullets fired per second")]
     [SerializeField] private float fireRate = 5.0f;
     [SerializeField] private int magazineSize = 24;
-    [SerializeField] private float bulletDamage = 15.0f;
 
     [Header("Reload Settings")]
     private float reloadDuration = 2.5f;
@@ -51,6 +52,10 @@ public class PlayerShoot : MonoBehaviour
 
     private Camera camera;
 
+
+    float effectTimer;
+    bool effectActive = false;
+
     private void Awake()
     {
         camera = transform.GetComponentInParent<Camera>();
@@ -83,6 +88,16 @@ public class PlayerShoot : MonoBehaviour
                     reloading = false;
                     currentClip = magazineSize;
                     clipImage.fillAmount = 1.0f;
+                }
+            }
+
+            if (effectActive)
+            {
+                effectTimer -= Time.deltaTime;
+                if(effectTimer <= 0.0f)
+                {
+                    damageFactor = 1.0f;
+                    effectActive = false;
                 }
             }
 
@@ -138,6 +153,11 @@ public class PlayerShoot : MonoBehaviour
     {
         totalBullets += amount;
         totalAmmoLeftText.text = totalBullets.ToString();
+    }
 
+    public void SetEffectDuration(float inTimer)
+    {
+        effectTimer = inTimer;
+        effectActive = true;
     }
 }

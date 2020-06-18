@@ -76,14 +76,7 @@ public class Enemy : MonoBehaviour
 
         PlayerController.instance.killsSinceLastAmmoPickup++;
 
-        if(PlayerController.instance.killsSinceLastAmmoPickup >= 6)
-        {
-            //Instantiate a ammo pickup
-            GameObject ammoPickup = Instantiate(GameManager.instance.ammoPrefab);
-            ammoPickup.transform.position = new Vector3(transform.position.x, 0.1f, transform.position.z); 
-
-            PlayerController.instance.killsSinceLastAmmoPickup = 0;
-        }
+        GameManager.instance.EnemyKilled(transform.position);
 
         WaveManager.instance.EnemyKilled();
         ScoreTextController.instance.ScoreUp(stats.scoreValue);
@@ -129,7 +122,7 @@ public class Enemy : MonoBehaviour
         agent.updateRotation = false;
         agent.speed = stats.movementSpeed * stats.damagedSpeedFactor;
 
-        yield return new WaitForSeconds(stats.knockbackTime); 
+        yield return new WaitForSeconds(stats.knockbackTime);
 
         agent.updateRotation = true;
         agent.speed = stats.movementSpeed;

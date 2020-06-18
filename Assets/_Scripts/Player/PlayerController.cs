@@ -27,10 +27,14 @@ public class PlayerController : MonoBehaviour
 
     public bool canBeDamaged = false;
 
+    public float regenRate = 12.5f;
 
     public GameObject go;
 
     public int killsSinceLastAmmoPickup;
+
+    bool effectActive = false;
+    float effectTimer;
 
     private void Awake()
     {
@@ -61,6 +65,19 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameManager.instance.isGameOver)
         {
+            if (effectActive)
+            {
+                effectTimer -= Time.deltaTime;
+                if(effectTimer <= 0.0f)
+                {
+                    effectActive = false;
+                    
+                }
+
+                health += regenRate * Time.deltaTime;
+                healthBar.fillAmount = health / healthAmount;
+            }
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 RaycastHit hit;
@@ -78,7 +95,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    public void RefillHealth()
+    {
+        health = healthAmount;
+        healthBar.fillAmount = 1.0f;
+    }
 
     void OnDeath()
     {
@@ -129,5 +150,11 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log("Hit Effect Off");
         hitEffect.gameObject.SetActive(false);
+    }
+
+    public void SetEffectDuration(float inTimer)
+    {
+        effectTimer = inTimer;
+        effectActive = true;
     }
 }

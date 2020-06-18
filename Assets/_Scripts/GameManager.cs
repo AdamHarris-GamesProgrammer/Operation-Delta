@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverBgObject;
     [SerializeField] private Image gameOverBgPanelImage;
 
+    [SerializeField] private float probabilityOfPickup = 0.05f;
+    [SerializeField] private List<GameObject> pickups;
+
     private NavMeshBaker baker;
 
 
@@ -68,6 +71,32 @@ public class GameManager : MonoBehaviour
                 RoomClearUpdate();
             }
         }
+    }
+
+    public void EnemyKilled(Vector3 enemyPosition)
+    {
+        if (PlayerController.instance.killsSinceLastAmmoPickup >= 6)
+        {
+            //Instantiate a ammo pickup
+            GameObject ammoPickup = Instantiate(GameManager.instance.ammoPrefab);
+            ammoPickup.transform.position = new Vector3(enemyPosition.x, 0.1f, enemyPosition.z);
+
+            PlayerController.instance.killsSinceLastAmmoPickup = 0;
+        }
+
+        float chance = UnityEngine.Random.Range(0.0f, 1.0f);
+
+        if(chance <= probabilityOfPickup)
+        {
+            //Decide what pickup to spawn
+            int index = UnityEngine.Random.Range(0, pickups.Count);
+
+            GameObject pickup = Instantiate(pickups[index]);
+            pickup.transform.position = new Vector3(enemyPosition.x, 0.1f, enemyPosition.z);
+            Debug.Log("Spawning: " + pickup.name);
+
+        }
+
     }
 
     void SurvivalUpdate()

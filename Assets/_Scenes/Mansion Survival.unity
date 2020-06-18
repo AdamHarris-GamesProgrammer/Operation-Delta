@@ -19735,6 +19735,12 @@ MonoBehaviour:
   spawningEnabled: 1
   gameOverBgObject: {fileID: 69038742}
   gameOverBgPanelImage: {fileID: 1859011645}
+  probabilityOfPickup: 0.05
+  pickups:
+  - {fileID: 1375056636655797869, guid: a5ea9f98e5a610a418738f4eaf1538aa, type: 3}
+  - {fileID: 7921720262639133574, guid: 9b7a07b1437d92840a00a72fdc8a210f, type: 3}
+  - {fileID: 3857928339506059520, guid: b4edadfdd6dfe974baa13aaf8c1ef9e6, type: 3}
+  - {fileID: 7864489608936109669, guid: 7a93bf95e7a71824c8a0bec303c00252, type: 3}
 --- !u!4 &2090434960
 Transform:
   m_ObjectHideFlags: 0
