@@ -38,7 +38,7 @@ public class WaveManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Destroy(this.gameObject);
         }
@@ -58,57 +58,58 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-
-        if (!waveOver)
+        if (!GameManager.instance.isGameOver)
         {
-            if (enemiesSpawned < totalAmountOfEnemies)
+            if (!waveOver)
             {
-                spawnTimer += Time.deltaTime;
-
-                if (spawnTimer >= timeBetweenEnemySpawns)
+                if (enemiesSpawned < totalAmountOfEnemies)
                 {
-                    int spawnPoint = UnityEngine.Random.Range(0, defaultSpawnPoints.Count);
+                    spawnTimer += Time.deltaTime;
 
-                    Debug.Log("Spawn point index: " + spawnPoint);
-                    int enemyIndex = UnityEngine.Random.Range(0, enemyPrefabs.Count);
+                    if (spawnTimer >= timeBetweenEnemySpawns)
+                    {
+                        int spawnPoint = UnityEngine.Random.Range(0, defaultSpawnPoints.Count);
+
+                        Debug.Log("Spawn point index: " + spawnPoint);
+                        int enemyIndex = UnityEngine.Random.Range(0, enemyPrefabs.Count);
 
 
-                    GameObject enemyInstance = Instantiate(enemyPrefabs[enemyIndex]);
-                    enemyInstance.transform.position = defaultSpawnPoints[spawnPoint].position;
+                        GameObject enemyInstance = Instantiate(enemyPrefabs[enemyIndex]);
+                        enemyInstance.transform.position = defaultSpawnPoints[spawnPoint].position;
 
-                    spawnTimer = 0.0f;
+                        spawnTimer = 0.0f;
 
-                    enemiesSpawned++;
+                        enemiesSpawned++;
+                    }
+                }
+
+                if (enemiesLeft == 0 && !waveOver)
+                {
+                    waveOver = true;
                 }
             }
-
-            if (enemiesLeft == 0 && !waveOver)
+            else
             {
-                waveOver = true;
+                if (!bCalled)
+                {
+                    NextWave();
+                }
+
+                waveTimer -= Time.deltaTime;
+                waveTimerText.text = waveTimer.ToString("F2") + "s";
+
+                if (waveTimer <= 0.0f)
+                {
+                    waveOver = false;
+                    bCalled = false;
+                    waveTimer = 0;
+
+                    waveTimerText.gameObject.SetActive(false);
+                    waveCompleteGO.SetActive(false);
+                }
+
             }
         }
-        else
-        {
-            if (!bCalled)
-            {
-                NextWave();
-            }
-
-            waveTimer -= Time.deltaTime;
-            waveTimerText.text = waveTimer.ToString("F2") + "s";
-
-            if(waveTimer <= 0.0f)
-            {
-                waveOver = false;
-                bCalled = false;
-                waveTimer = 0;
-
-                waveTimerText.gameObject.SetActive(false);
-                waveCompleteGO.SetActive(false);
-            }
-
-        }
-
     }
 
     public void EnemyKilled()
@@ -121,15 +122,15 @@ public class WaveManager : MonoBehaviour
         bCalled = true;
         waveNumber++;
 
-        if(waveNumber > 5)
+        if (waveNumber > 5)
         {
             enemyIncreasePerWave = 1.2f;
         }
-        else if(waveNumber > 10)
+        else if (waveNumber > 10)
         {
             enemyIncreasePerWave = 1.1f;
         }
-        else if(waveNumber > 25)
+        else if (waveNumber > 25)
         {
             enemyIncreasePerWave = 1.05f;
         }

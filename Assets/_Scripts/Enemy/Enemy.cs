@@ -74,6 +74,16 @@ public class Enemy : MonoBehaviour
         audioSource.clip = stats.deathSound;
         audioSource.Play();
 
+        PlayerController.instance.killsSinceLastAmmoPickup++;
+
+        if(PlayerController.instance.killsSinceLastAmmoPickup >= 6)
+        {
+            //Instantiate a ammo pickup
+            GameObject ammoPickup = Instantiate(GameManager.instance.ammoPrefab);
+            ammoPickup.transform.position = new Vector3(transform.position.x, 0.1f, transform.position.z); 
+
+            PlayerController.instance.killsSinceLastAmmoPickup = 0;
+        }
 
         WaveManager.instance.EnemyKilled();
         ScoreTextController.instance.ScoreUp(stats.scoreValue);

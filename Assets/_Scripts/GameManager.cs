@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameMode gameMode;
 
 
+    public GameObject ammoPrefab;
  
     public bool spawningEnabled = false;
 
@@ -87,10 +88,10 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
 
+        Cursor.lockState = CursorLockMode.None;
+
         StartCoroutine("FadeIn");
         StartCoroutine("FadeOut");
-
-        //gameOverBgObject.SetActive(true);
     }
 
     IEnumerator FadeIn()

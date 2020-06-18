@@ -32,9 +32,5 @@ public class MouseLook : MonoBehaviour
 
             transform.localRotation = Quaternion.Euler(xRotation, 0.0f, 0.0f);
         }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
     }
 }

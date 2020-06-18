@@ -32,7 +32,7 @@ public class PlayerShoot : MonoBehaviour
 
     [Header("UI Settings")]
     [SerializeField] private Image clipImage;
-    [SerializeField] private Text totalAmmoLeft;
+    [SerializeField] private Text totalAmmoLeftText;
 
     private Animation anim;
 
@@ -63,7 +63,7 @@ public class PlayerShoot : MonoBehaviour
         timeNeededBetweenShots = 1.0f / fireRate;
         currentClip = magazineSize;
 
-        totalAmmoLeft.text = totalBullets.ToString();
+        totalAmmoLeftText.text = totalBullets.ToString();
     }
 
     // Update is called once per frame
@@ -111,7 +111,7 @@ public class PlayerShoot : MonoBehaviour
         currentClip--;
 
         totalBullets--;
-        totalAmmoLeft.text = totalBullets.ToString();
+        totalAmmoLeftText.text = totalBullets.ToString();
 
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layer))
@@ -132,5 +132,12 @@ public class PlayerShoot : MonoBehaviour
         float fill = (float)currentClip / (float)magazineSize;
 
         clipImage.fillAmount = fill;
+    }
+
+    public void AddAmmo(int amount)
+    {
+        totalBullets += amount;
+        totalAmmoLeftText.text = totalBullets.ToString();
+
     }
 }

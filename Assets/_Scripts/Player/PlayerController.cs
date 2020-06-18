@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject go;
 
+    public int killsSinceLastAmmoPickup;
 
     private void Awake()
     {
@@ -76,6 +77,8 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+
 
     void OnDeath()
     {
