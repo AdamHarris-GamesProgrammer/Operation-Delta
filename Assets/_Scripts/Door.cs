@@ -13,6 +13,8 @@ public class Door : MonoBehaviour
     {
         if (ScoreTextController.instance.gameScore >= costToOpen)
         {
+            PlayerController.instance.ExitDoorEvent();
+
             ScoreTextController.instance.ScoreUp(-costToOpen);
 
             foreach (Transform spawnpoint in correspondingWindows)
@@ -33,6 +35,22 @@ public class Door : MonoBehaviour
             }
 
             Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerController.instance.InDoorEvent(costToOpen);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerController.instance.ExitDoorEvent();
         }
     }
 }

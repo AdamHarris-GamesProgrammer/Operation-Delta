@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -25,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Controller Settings")]
     [SerializeField] private float controllerYOffsetOnCrouch = -0.75f;
     [SerializeField] private float controllerHeightOffsetOnCrouch = -1.45f;
+
+    [Header("Sound Settings")]
+    [SerializeField] private AudioSource walkSound;
 
     private float speedFactor = 1.0f;
 
@@ -90,9 +94,32 @@ public class PlayerMovement : MonoBehaviour
                 isSprinting = false;
             }
 
+            bool isMoving = false;
+
             //Movement
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
+
+            if((x > 0.5f || x < -0.5f) || (z > 0.5f || z < -0.5f))
+            {
+                isMoving = true;
+                
+            }
+
+            if (isMoving)
+            {
+                if (!walkSound.isPlaying)
+                {
+                    walkSound.Play();
+                }
+
+                Debug.Log("Moving");
+            }
+            else
+            {
+                walkSound.Stop();
+                Debug.Log("Not Moving");
+            }
 
             Vector3 move = transform.right * x + transform.forward * z;
 

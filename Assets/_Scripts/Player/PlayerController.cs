@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Game UI")]
     [SerializeField] private Image hitEffect;
     [SerializeField] private Image healthBar;
-
+    [SerializeField] private Text doorPromptText;
 
     [Header("Sounds")]
     private AudioSource audioSource;
@@ -155,5 +155,15 @@ public class PlayerController : MonoBehaviour
     {
         effectTimer = inTimer;
         effectActive = true;
+    }
+
+    public void InDoorEvent(int cost)
+    {
+        doorPromptText.text = "Press 'E' to Unlock door. COSTS: " + cost;
+        doorPromptText.gameObject.SetActive(true);
+    }
+    public void ExitDoorEvent()
+    {
+        doorPromptText.gameObject.SetActive(false);
     }
 }

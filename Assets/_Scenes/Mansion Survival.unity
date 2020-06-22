@@ -11107,6 +11107,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 439844593883490614, guid: 0c723fbdfa1b8dc41bff0349940ba636,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b87d003a637ac946a857ec4ab270c0d, type: 3}
     - target: {fileID: 7686564923784351989, guid: 0c723fbdfa1b8dc41bff0349940ba636,
         type: 3}
       propertyPath: clipImage
@@ -11137,6 +11142,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7686564925061855316, guid: 0c723fbdfa1b8dc41bff0349940ba636,
+        type: 3}
+      propertyPath: walkSound
+      value: 
+      objectReference: {fileID: 1228446838}
     - target: {fileID: 7686564925061855317, guid: 0c723fbdfa1b8dc41bff0349940ba636,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11194,6 +11204,12 @@ PrefabInstance:
       objectReference: {fileID: 603759698}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c723fbdfa1b8dc41bff0349940ba636, type: 3}
+--- !u!82 &1228446838 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 439844593883490614, guid: 0c723fbdfa1b8dc41bff0349940ba636,
+    type: 3}
+  m_PrefabInstance: {fileID: 1228446837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1233017046
 GameObject:
   m_ObjectHideFlags: 0
