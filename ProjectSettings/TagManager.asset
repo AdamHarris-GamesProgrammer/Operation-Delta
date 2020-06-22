@@ -10,6 +10,8 @@ TagManager:
   - EnemyHead
   - EnemyBody
   - EnemyLegs
+  - Pickup Text
+  - PickupText
   layers:
   - Default
   - TransparentFX

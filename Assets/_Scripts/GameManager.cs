@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float probabilityOfPickup = 0.05f;
     [SerializeField] private List<GameObject> pickups;
 
+    [Header("Pickup Text")]
+    [SerializeField] private Text pickupTrailText;
+
     private NavMeshBaker baker;
 
 
@@ -148,5 +151,15 @@ public class GameManager : MonoBehaviour
             ScoreTextController.instance.scoreText.color = c;
             yield return new WaitForSeconds(.1f);
         }
+    }
+
+    public void PickupActive()
+    {
+        pickupTrailText.gameObject.SetActive(true);
+    }
+
+    public void PickupDisabled()
+    {
+        pickupTrailText.gameObject.SetActive(false);
     }
 }

@@ -222,6 +222,9 @@ MonoBehaviour:
   pickupCollectedSoundEffect: {fileID: 8300000, guid: 5eda53bc2be668a4c94b6799d024c1fe,
     type: 3}
   pickupParticleEffect: {fileID: 158011998640087117}
+  pickupName: Double Damage
+  textColor: {r: 0.7830189, g: 0, b: 0, a: 1}
+  textDuration: 2.5
   effectDuration: 15
 --- !u!82 &4238748211603959597
 AudioSource:

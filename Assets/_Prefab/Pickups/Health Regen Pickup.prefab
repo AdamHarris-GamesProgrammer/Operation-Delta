@@ -222,6 +222,9 @@ MonoBehaviour:
   pickupCollectedSoundEffect: {fileID: 8300000, guid: 5eda53bc2be668a4c94b6799d024c1fe,
     type: 3}
   pickupParticleEffect: {fileID: 9188962475189404123}
+  pickupName: Health Regeneration
+  textColor: {r: 1, g: 0, b: 0, a: 1}
+  textDuration: 2.5
   effectDuration: 15
 --- !u!82 &-3921991301063474669
 AudioSource:

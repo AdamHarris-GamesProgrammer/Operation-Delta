@@ -115,6 +115,9 @@ MonoBehaviour:
   pickupCollectedSoundEffect: {fileID: 8300000, guid: 5eda53bc2be668a4c94b6799d024c1fe,
     type: 3}
   pickupParticleEffect: {fileID: 3910824298506228593}
+  pickupName: 'Ammo '
+  textColor: {r: 0.06901923, g: 0.4433962, b: 0.12276985, a: 1}
+  textDuration: 2.5
   ammoAmount: 30
 --- !u!114 &-7553880509226359545
 MonoBehaviour:
