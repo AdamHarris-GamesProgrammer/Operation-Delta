@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xAmount: 0
-  yAmount: 15
+  yAmount: 30
   zAmount: 0
 --- !u!114 &1175315101753746105
 MonoBehaviour:
@@ -217,9 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fa43ccd5146c548bcdd63d155aad25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupCollectedSoundEffect: {fileID: 8300000, guid: 5eda53bc2be668a4c94b6799d024c1fe,
-    type: 3}
   pickupSpawnSoundEffect: {fileID: 8300000, guid: f1e2f01c6e4f0924d897f9b599d02353,
+    type: 3}
+  pickupCollectedSoundEffect: {fileID: 8300000, guid: 5eda53bc2be668a4c94b6799d024c1fe,
     type: 3}
   pickupParticleEffect: {fileID: 9188962475189404123}
   effectDuration: 15

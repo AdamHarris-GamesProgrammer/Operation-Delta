@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1375056636655797869}
   m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.38191, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.190955, z: 0.5}
   m_Children:
   - {fileID: 9200654765731556496}
   - {fileID: 820800769694769302}
@@ -110,9 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b559a1f224f8034408c46708b84fedc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupCollectedSoundEffect: {fileID: 8300000, guid: 5eda53bc2be668a4c94b6799d024c1fe,
-    type: 3}
   pickupSpawnSoundEffect: {fileID: 8300000, guid: f1e2f01c6e4f0924d897f9b599d02353,
+    type: 3}
+  pickupCollectedSoundEffect: {fileID: 8300000, guid: 5eda53bc2be668a4c94b6799d024c1fe,
     type: 3}
   pickupParticleEffect: {fileID: 3910824298506228593}
   ammoAmount: 30
@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc3d0c79d1f5b44e8a87446c83ec76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xAmount: 0
-  yAmount: 15
+  xAmount: 30
+  yAmount: 0
   zAmount: 0
 --- !u!82 &-652956473927769964
 AudioSource:

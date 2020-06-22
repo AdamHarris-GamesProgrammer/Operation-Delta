@@ -47,9 +47,6 @@ public class PlayerShoot : MonoBehaviour
 
     bool reloading;
 
-    //auto reload when bullets are out
-    //optional reload by pressing r
-    //fire effects from gun
     //Crosshair gets bigger and smaller depending on if you are zoomed in?
 
     private Camera camera;
