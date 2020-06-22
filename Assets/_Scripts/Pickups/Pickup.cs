@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    [SerializeField] protected AudioClip pickupCollectedSoundEffect;
+    [Header("Sound Effects")]
     [SerializeField] protected AudioClip pickupSpawnSoundEffect;
+    [SerializeField] protected AudioClip pickupCollectedSoundEffect;
 
+    [Header("Particle Effects")]
     [SerializeField] protected ParticleSystem pickupParticleEffect;
 
-    protected AudioSource audioSource;
+    private AudioSource audioSource;
 
     private void Awake()
     {

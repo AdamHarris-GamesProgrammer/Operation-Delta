@@ -6921,6 +6921,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 739498510}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &749115516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 955779979521591847, guid: dc06ace172834a14db0f07bf1850b908,
+    type: 3}
+  m_PrefabInstance: {fileID: 1760678889}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &762775820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11116,6 +11122,11 @@ PrefabInstance:
       propertyPath: totalAmmoLeftText
       value: 
       objectReference: {fileID: 1173191751}
+    - target: {fileID: 7686564923784351989, guid: 0c723fbdfa1b8dc41bff0349940ba636,
+        type: 3}
+      propertyPath: reloadText
+      value: 
+      objectReference: {fileID: 749115516}
     - target: {fileID: 7686564925061855315, guid: 0c723fbdfa1b8dc41bff0349940ba636,
         type: 3}
       propertyPath: m_Name

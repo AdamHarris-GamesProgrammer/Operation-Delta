@@ -90,7 +90,6 @@ public class PlayerController : MonoBehaviour
 
                     GameManager.instance.DoorUnlocked();
                 }
-
             }
         }
     }

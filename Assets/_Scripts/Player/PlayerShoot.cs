@@ -34,6 +34,8 @@ public class PlayerShoot : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] private Image clipImage;
     [SerializeField] private Text totalAmmoLeftText;
+    [SerializeField] private GameObject reloadText;
+
 
     private Animation anim;
 
@@ -78,6 +80,8 @@ public class PlayerShoot : MonoBehaviour
         {
             if (reloading)
             {
+                reloadText.SetActive(false);
+
                 reloadTimer += Time.deltaTime;
 
                 float fill = reloadTimer / reloadDuration;
@@ -108,6 +112,12 @@ public class PlayerShoot : MonoBehaviour
                 {
                     Shoot();
                 }
+            }
+
+            if (Input.GetKey(KeyCode.R))
+            {
+                reloading = true;
+                reloadTimer = 0.0f;
             }
         }
     }
@@ -144,9 +154,18 @@ public class PlayerShoot : MonoBehaviour
             reloading = true;
         }
 
-        float fill = (float)currentClip / (float)magazineSize;
+        float fillAmount = (float)currentClip / (float)magazineSize;
 
-        clipImage.fillAmount = fill;
+        clipImage.fillAmount = fillAmount;
+
+        if (fillAmount <= 0.3f)
+        {
+            reloadText.SetActive(true);
+        }
+        else
+        {
+            reloadText.SetActive(false);
+        }
     }
 
     public void AddAmmo(int amount)
