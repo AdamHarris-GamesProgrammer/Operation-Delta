@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7156d1c2db23744cbf2ddab19e8cb9c, type: 3}
   m_Name: Crawler
   m_EditorClassIdentifier: 
-  health: 10
+  health: 50
   healthRegenEnabled: 1
   healthRegenRate: 2.5
   regenerationCooldown: 5

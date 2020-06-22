@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
+    public void PlayLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public void RetryLevel()
     {
         Debug.Log("Retry Level");

@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour
                 }
 
                 health += regenRate * Time.deltaTime;
+
+                health = Mathf.Clamp(health, 0.0f, healthAmount);
+
                 healthBar.fillAmount = health / healthAmount;
             }
 

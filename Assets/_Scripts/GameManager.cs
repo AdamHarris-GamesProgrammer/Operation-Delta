@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
         }
 
         baker = GetComponent<NavMeshBaker>();
-        baker.BakeMeshes();
     }
 
     public void DoorUnlocked()

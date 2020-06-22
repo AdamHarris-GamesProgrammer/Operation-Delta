@@ -10295,13 +10295,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 0}
   healthBar: {fileID: 0}
+  doorPromptText: {fileID: 0}
   damagedSound: {fileID: 8300000, guid: 1bef2be927497bc4e8b37d96af4f885f, type: 3}
   deathSound: {fileID: 8300000, guid: 16b5bd48d3eee7f40a2bd034b054b0b6, type: 3}
   doorLayer:
     serializedVersion: 2
     m_Bits: 4096
-  healthAmount: 20
-  canBeDamaged: 0
+  healthAmount: 100
+  canBeDamaged: 1
   regenRate: 12.5
   go: {fileID: 0}
   killsSinceLastAmmoPickup: 0
@@ -10413,7 +10414,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0b87d003a637ac946a857ec4ab270c0d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
