@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public float levelTimer;
 
-
-
     enum GameMode { Surivial, RoomClear };
     [SerializeField] private GameMode gameMode;
 
@@ -52,27 +50,9 @@ public class GameManager : MonoBehaviour
         baker = GetComponent<NavMeshBaker>();
     }
 
-    public void DoorUnlocked()
-    {
-        baker.BakeMeshes();
-    }
-
-    // Update is called once per frame
     void Update()
     {
         levelTimer += Time.deltaTime;
-
-        if (!isGameOver)
-        {
-            if (gameMode == GameMode.Surivial)
-            {
-                SurvivalUpdate();
-            }
-            else if (gameMode == GameMode.RoomClear)
-            {
-                RoomClearUpdate();
-            }
-        }
     }
 
     public void EnemyKilled(Vector3 enemyPosition)
@@ -98,21 +78,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("Spawning: " + pickup.name);
 
         }
-
-    }
-
-    void SurvivalUpdate()
-    {
-        if (spawningEnabled)
-        {
-
-        }
-
-    }
-
-    void RoomClearUpdate()
-    {
-
     }
 
     public void OnDeath()

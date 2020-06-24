@@ -47,8 +47,6 @@ public class PlayerController : MonoBehaviour
             instance = this;
         }
 
-        //DontDestroyOnLoad(this);
-
         audioSource = GetComponent<AudioSource>();
 
         go = this.gameObject;
@@ -90,8 +88,6 @@ public class PlayerController : MonoBehaviour
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 1.5f, doorLayer))
                 {
                     hit.collider.gameObject.GetComponent<Door>().Unlock();
-
-                    GameManager.instance.DoorUnlocked();
                 }
             }
         }

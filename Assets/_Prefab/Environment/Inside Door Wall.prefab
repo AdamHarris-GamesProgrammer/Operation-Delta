@@ -56,9 +56,9 @@ GameObject:
   - component: {fileID: 2986620855097837397}
   - component: {fileID: 7108532423543618974}
   - component: {fileID: 8771492396740067094}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Inside Door Wall
-  m_TagString: Door
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3552862732182320009}
-  m_Mesh: {fileID: -2881112382486390323, guid: 1d17f02fe5ba9de41968e2c401089123, type: 3}
+  m_Mesh: {fileID: -2881112382486390323, guid: 7fe293ba55e518641a19c43ba2b82a14, type: 3}
 --- !u!23 &2986620855097837397
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -2881112382486390323, guid: 1d17f02fe5ba9de41968e2c401089123, type: 3}
+  m_Mesh: {fileID: -2881112382486390323, guid: 7fe293ba55e518641a19c43ba2b82a14, type: 3}
 --- !u!114 &8771492396740067094
 MonoBehaviour:
   m_ObjectHideFlags: 0

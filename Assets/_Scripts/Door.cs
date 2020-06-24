@@ -36,6 +36,7 @@ public class Door : MonoBehaviour
 
             Destroy(this.gameObject);
         }
+        Debug.Log("Unlock Called");
     }
 
     private void OnTriggerEnter(Collider other)
